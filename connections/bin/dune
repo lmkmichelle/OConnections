@@ -1,4 +1,4 @@
 (executable
  (public_name connections)
  (name main)
- (libraries connections))
+ (libraries connections ANSITerminal))
