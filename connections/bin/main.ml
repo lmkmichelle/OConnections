@@ -73,3 +73,4 @@ else
   print_endline ("Not a four letter word.")
 
 let _ = game ()
+
