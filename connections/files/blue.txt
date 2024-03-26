@@ -1,0 +1,10 @@
+Keyboard Keys,Option,Return,Shift,Tab
+Magazines,Essence,People,Time,Us
+Dog Breeds (Informally),Lab,Peke,Pit,Pom
+Cleaning Verbs,Dust,Mop,Sweep,Vacuum
+Synonyms For Sad,Blue,Down,Glum,Low
+Rappers,Common,Future,Ice Cube,Q-Tip
+Slang for Toilet,Can,Head,John,Throne,
+Things that are Red,Cherry,Fire Truck,Ruby,Stop Sign
+Vegetables,Beet,Carrot,Corn,Onion
+Birds,Crane,Jay,Swallow,Turkey
