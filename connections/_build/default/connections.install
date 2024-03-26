@@ -1,8 +1,0 @@
-lib: [
-  "_build/install/default/lib/connections/META"
-  "_build/install/default/lib/connections/dune-package"
-  "_build/install/default/lib/connections/opam"
-]
-bin: [
-  "_build/install/default/bin/connections"
-]
