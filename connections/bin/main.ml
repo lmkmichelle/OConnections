@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 (** [data] is the type containing a category and its corresponding list of words.
     Will also contain the difficulty level of the category. *)
+=======
+>>>>>>> b0c29df (fixed the _build directory showing up in our git repo)
 
 type data = 
 { 
