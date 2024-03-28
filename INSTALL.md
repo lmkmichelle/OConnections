@@ -3,7 +3,7 @@ packages are required to be installed at this time.
 
 In terminal (MacOS) or cmd (Windows), navigate to the source folder for this project using the cd command. For example, if the project is saved in Downloads, then the command should be as follows:
 
-cd "/Userse/[Your PC Name]/Downloads/3110FinalProject/connections"
+`cd "/Users/[Your PC Name]/Downloads/3110FinalProject/connections"`
 
 It is vital that the directory is specifically changed to the "connections" directory before running
 the program, as all of the necessary files are built in the connections directory. The dune commands will
