@@ -1,3 +1,4 @@
+
 (** [data] is the type containing a category and its corresponding list of words.
     Will also contain the difficulty level of the category. *)
 
@@ -29,7 +30,6 @@ let rec convert_to_int_list acc = function
 | hd :: tl ->
     let num = int_of_string hd in
     convert_to_int_list (num :: acc) tl
-
 (** Main game function.*)
 let game () = 
   let list_of_words = ref [] in
