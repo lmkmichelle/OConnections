@@ -1,3 +1,5 @@
+open Connections
+open Category
 
 (** [data] is the type containing a category and its corresponding list of words.
     Will also contain the difficulty level of the category. *)
@@ -23,6 +25,8 @@ let const = [
   {category = "Dr. ___"; items = ["Evil"; "Pepper"; "J"; "No"]};
 ]
 
+(* let const = make_category_list "blue.txt" *)
+
 (** Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
     (ex. [10; 1; 4; 13])*)
 let rec convert_to_int_list acc = function
@@ -33,30 +37,31 @@ let rec convert_to_int_list acc = function
 (** Main game function.*)
 let game () = 
   let list_of_words = ref [] in
-  (** Store all elements from all four categories into one [word list] *)
+  (* Store all elements from all four categories into one [word list] *)
   for i = 0 to (List.length const) - 1 do
     for j = 0 to List.length ((List.nth const i).items) - 1 do
       list_of_words := !list_of_words @ [{word = (List.nth (List.nth const i).items j); category = (List.nth const i).category}]
     done
   done;
 
-  (** Prints out the words in a stylized 4x4 grid.*)
+  (* Prints out the words in a stylized 4x4 grid.*)
   for words = 0 to (List.length !list_of_words - 1) do 
     if (words mod 4 = 0 && words <> 0) then 
       let () = print_newline () in
-      ANSITerminal.printf [ANSITerminal.black] "[%i: %s]" (words + 1) (List.nth !list_of_words words).word
+      ANSITerminal.printf [ANSITerminal.green] "[%i: %s]" (words + 1) (List.nth !list_of_words words).word
     else 
-      ANSITerminal.printf [ANSITerminal.black] "[%i: %s]" (words + 1) (List.nth !list_of_words words).word
+      ANSITerminal.printf [ANSITerminal.green] "[%i: %s]" (words + 1) (List.nth !list_of_words words).word
   done;
 
-  (** User input *)
+  (* User input *)
+  let () = print_newline () in
   let () = print_endline "Please enter the numbers of the four words you would like to guess, with a space in between." in
   let the_input = read_line () in
   let numbers = 
     let split_input = String.split_on_char ' ' the_input in
     convert_to_int_list [] split_input in
 
-(** Compares the categories of the four word guesses. *)
+(* Compares the categories of the four word guesses. *)
 if List.length numbers = 4 then 
   let word1_category = (List.nth !list_of_words ((List.nth numbers 0) - 1)).category in
   let word2_category = (List.nth !list_of_words ((List.nth numbers 1) - 1)).category in

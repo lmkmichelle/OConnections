@@ -1,0 +1,26 @@
+---
+# Members of your group.
+group:
+  - name: Michelle Mercer
+    netid: mzm24
+  - name: Jenna McNally
+    netid: jkm262
+  - name: Asli Cihangir
+    netid: ac2492
+# Your PM.
+pm:
+  name: Emory Walsh
+  netid: elw223
+# Set to false if you don't want your gallery entry to be public.
+publish: false
+# Pithy title
+title: "Connections"
+# OK if this is a Cornell Github link, but public gallery viewers won't be able to see it.
+git-repo: "https://github.com/cs3110/textbook"
+# If you have no demo screencast, replace the url string with an empty string ""
+demo-video-url: ""
+# Write a short, attention-grabbing description of your project.
+desc: >
+  Our project is an implementation of the New York Times' game Connections, a game where there is a 4x4 grid
+  of words, and the words are each grouped into 4 random categories that the player must figure out. The
+  interface is in terminal, with colors implemented using ANSITerminal. 
