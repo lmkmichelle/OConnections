@@ -1,4 +1,7 @@
-type t
+type t = {
+  word : string;
+  category : string;
+}
 
 val make : string -> string -> t
 (**makes a t from strings [s1] and [s2] which are provided as input, with s1

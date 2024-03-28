@@ -1,31 +1,38 @@
 open Connections
 open Category
+open Word
 
+let () = Random.self_init ()
 (** [data] is the type containing a category and its corresponding list of words.
     Will also contain the difficulty level of the category. *)
 
-type data = 
+(* type data = 
 { 
   category : string;
   items : string list
-}
+} *)
 
 (** [word] is the type containing a word and the category it belongs to. *)
-type word = 
+(* type word = 
 {
   word : string;
   category : string;
-}
-
+} *)
+let yellow = make_category_list "yellow.txt" 1
+let green = make_category_list "green.txt" 2
+let blue = make_category_list "blue.txt" 3
+let purple = make_category_list "purple.txt" 4
+let size = List.length yellow
 (** Testing list of four categories*)
+let x = Random.int (size) 
 let const = [
-  {category = "Timekeeping devices"; items = ["Clock"; "Hourglass"; "Sundial"; "Watch"]};
-  {category = "Units of measure"; items = ["Second"; "Newton"; "Hertz"; "Mole"]};
-  {category = "Hairstyles"; items = ["Bob"; "Crop"; "Pixie"; "Shag"]};
-  {category = "Dr. ___"; items = ["Evil"; "Pepper"; "J"; "No"]};
+  (List.nth yellow x);
+  (List.nth green x);
+  (List.nth blue x);
+  (List.nth purple x);
 ]
 
-(* let const = make_category_list "blue.txt" *)
+
 
 (** Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
     (ex. [10; 1; 4; 13])*)
@@ -39,8 +46,8 @@ let game () =
   let list_of_words = ref [] in
   (* Store all elements from all four categories into one [word list] *)
   for i = 0 to (List.length const) - 1 do
-    for j = 0 to List.length ((List.nth const i).items) - 1 do
-      list_of_words := !list_of_words @ [{word = (List.nth (List.nth const i).items j); category = (List.nth const i).category}]
+    for j = 0 to Array.length ((List.nth const i).items) - 1 do
+      list_of_words := !list_of_words @ [(List.nth const i).items.(j); ]
     done
   done;
 
