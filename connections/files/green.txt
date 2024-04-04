@@ -8,3 +8,33 @@ Baby Animals,Calf,Cub,Joey,Kid
 Mattress Sizes,Full,King,Queen,Twin
 Tops,Cami,Halter,Tank,Tee
 Countries,Chad,Georgia,Jordan,Togo
+Terms of Endearment,Boo,Honey,Sugar,Sweetie
+Deadly Sins,Envy,Greed,Lust,Pride
+Greek Letters,Beta,Chi,Delta,Iota
+Famous Brothers,Jonas,Marx,Warner,Wright
+Colors,Brown,Pink,Turquoise,Violet
+Tree Nuts,Almond,Cashew,Pecan,Walnut
+Ship Directions,Bow,Port,Starboard,Stern
+Awards,Cup,Medal,Ribbon,Trophy
+Anti-Vampire,Crucifix,Garlic,Mirror,Stake
+Royal Titles,Baron,Earl,King,Prince
+Web Browsers,Chrome,Edge,Opera,Safari
+Animal Noses,Beak,Muzzle,Snout,Trunk
+Dance Fads,Dougie,Macarena,Mashed Potato,Twist
+Video Game Consoles,Dreamcast,Genesis,Switch,Wii
+Mild Oaths,Darn,Fudge,Heck,Shoot
+Synonyms for Imitate,Copy,Echo,Mimic,Parrot
+Organs,Heart,Kidney,Liver,Lung
+File Extensions,Gif,Pdf,Tiff,Zip
+Arithmetic Operations,Add,Divide,Multiply,Subtract
+Pasta Shapes,Bowtie,Elbow,Shell,Spiral
+3-D Shapes,Cone,Cube,Pyramid,Sphere
+Board Games,Clue,Risk,Sorry,Trouble
+Sandwiches,Club,Cuban,Melt,Sub
+Music Genres,Blues,Country,Funk,Soul
+Metal Elements,Iron,Lead,Tin,Zinc
+Chocolate Bars,Chunky,Crunch,Mars,Mounds
+Bike Parts,Brake,Chain,Saddle,Spoke
+Land Formations,Hill,Mountain,Plateau,Valley
+Hairstyles,Bob,Crop,Pixie,Shag
+Coverings,Cap,Cover,Lid,Top

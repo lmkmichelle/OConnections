@@ -18,12 +18,15 @@ let () = Random.self_init ()
   word : string;
   category : string;
 } *)
+(**four category lists, with each of them representing a different difficulty
+in the game.*)
 let yellow = make_category_list "yellow.txt" 1
 let green = make_category_list "green.txt" 2
 let blue = make_category_list "blue.txt" 3
 let purple = make_category_list "purple.txt" 4
 let size = List.length yellow
-(** Testing list of four categories*)
+(** Testing list of four categories, and random number used to decide which
+    categories from them are picked for a given time*)
 let x = Random.int (size) 
 let const = [
   (List.nth yellow x);

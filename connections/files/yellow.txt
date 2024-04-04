@@ -8,3 +8,33 @@ Leg Parts,Ankle,Knee,Shin,Thigh
 Board Games,Backgammon,Checkers,Chess,Go
 Sports,Cricket,Fencing,Polo,Squash
 Fruit,Date,Kiwi,Lemon,Orange
+Spices Beginning With "C",Cardamom,Clove,Coriander,Cumin
+Animal Group Names,Flock,Pack,Pod,School
+Airlines,Frontier,Spirit,United,Virgin
+Beds,Bunk,Canopy,Murphy,Trundle
+Bird Sounds,Caw,Chirp,Cluck,Tweet
+Coffee Drinks,Americano,Cappuccino,Espresso,Latte
+Neckwear,Ascot,Bolo,Scarf,Tie 
+Muscles (Informally),Lat,Pec,Quad,Tri
+Off-White Shades,Cream,Eggshell,Ivory,Vanilla
+Grains,Barley,Oat,Rye,Spelt
+Music Genres,Jazz,Pop,Punk,Rap
+Dog Breeds,Boxer,Dalmatian,Husky,Poodle
+60's Band Members,Beach Boy, Beatle, Byrd, Monkee
+Candy Bars,Bounty,Crunch,Heath,Milky Way
+Desserts,Cheesecake,Flan,Mousse,Tiramisu
+European Countries,Denmark,Greece,Poland,Portugal
+Hats,Beret,Bowler,Fedora,Fez
+Seven Dwarfs,Bashful,Doc,Grumpy,Happy
+Winged Insects,Fly,Gnat,Moth,Wasp
+NFL Players,Bronco,Cowboy,Packer,Raven
+Vegetables that are also Fruits,Cucumber,Eggplant,Pepper,Tomato
+Shoe Parts,Heel,Lace,Sole,Tongue
+Boats,Ferry,Junk,Tug,Yacht
+Pleasant Smells,Aroma,Bouquet,Fragrance,Scent
+US Coins,Dime,Nickel,Penny,Quarter
+Marsupials,Kangaroo,Koala,Wallaby,Wombat
+Marine Mammals,Dolphin,Manatee,Otter,Seal
+Trees,Ash,Cedar,Maple,Pine
+Timekeeping Devices,Clock,Hourglass,Sundial,Watch
+Woodwinds,Bassoon,Clarinet,Flute,Oboe
