@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 (** [data] is the type containing a category and its corresponding list of words.
     Will also contain the difficulty level of the category. *)
-=======
->>>>>>> b0c29df (fixed the _build directory showing up in our git repo)
+
 
 type data = 
 { 
@@ -73,7 +72,7 @@ if List.length numbers = 4 then
   else
     print_endline "Nope!" 
 else
-  print_endline ("Not a four letter word.")
+  print_endline ("Enter 4 numbers for 4 words.")
 
 let _ = game ()
 

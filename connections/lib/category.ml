@@ -1,3 +1,5 @@
+open Word
+
 type t = {
   name : string;
   items : Word.t array;
@@ -24,3 +26,17 @@ let rec category_list_of_string_array_list = function
 let make_category_list file =
   category_list_of_string_array_list
     (separate_string_list (list_from_file file))
+
+let test_category =
+  [
+    {
+      name = "Category1";
+      items =
+        [|
+          make "word1" "Category1";
+          make "word2" "Category1";
+          make "word3" "Category1";
+        |];
+      difficulty = 1;
+    };
+  ]
