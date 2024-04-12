@@ -1,0 +1,10 @@
+NBA Teams,Bucks,Heat,Jazz,Nets
+Units of Length,Foot,League,Mile,Yard
+Synonyms for Eat,Chow,Gobble,Scarf,Wolf
+Musicals Beginning with "C",Cabaret,Carousel,Cats,Chicago
+Condiments,Ketchup,Mayo,Relish,Tartar
+Shades of Blue,Baby,Midnight,Powder,Royal
+Baby Animals,Calf,Cub,Joey,Kid
+Mattress Sizes,Full,King,Queen,Twin
+Tops,Cami,Halter,Tank,Tee
+Countries,Chad,Georgia,Jordan,Togo
