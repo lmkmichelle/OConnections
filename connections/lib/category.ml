@@ -2,6 +2,7 @@ open Word
 
 type t = {
   name : string;
+  hint : string;
   items : Word.t array;
   difficulty : int;
 }
@@ -18,7 +19,8 @@ let rec category_list_of_string_array_list diff = function
   | h :: t ->
       {
         name = h.(0);
-        items = Array.init 4 (fun x -> Word.make h.(x + 1) h.(0));
+        hint = h.(1);
+        items = Array.init 4 (fun x -> Word.make h.(x + 2) h.(0));
         difficulty = diff;
       }
       :: category_list_of_string_array_list diff t
@@ -31,6 +33,7 @@ let test_category =
   [
     {
       name = "Category1";
+      hint = "Hint of Category1";
       items =
         [|
           make "word1" "Category1";

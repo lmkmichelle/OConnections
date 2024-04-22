@@ -1,40 +1,40 @@
-Keyboard Keys,Option,Return,Shift,Tab
-Magazines,Essence,People,Time,Us
-Dog Breeds (Informally),Lab,Peke,Pit,Pom
-Cleaning Verbs,Dust,Mop,Sweep,Vacuum
-Synonyms For Sad,Blue,Down,Glum,Low
-Rappers,Common,Future,Ice Cube,Q-Tip
-Slang for Toilet,Can,Head,John,Throne,
-Things that are Red,Cherry,Fire Truck,Ruby,Stop Sign
-Vegetables,Beet,Carrot,Corn,Onion
-Birds,Crane,Jay,Swallow,Turkey
-Things With Wings,Airplane,Angel,Bird,Pegasus
-Slow Animals,Loris,Sloth,Snail,Tortoise
-Silent "G",Gnat,Gnaw,Gnocchi,Gnome
-Hondas,Accord,Civic,Passport,Pilot
-Fishing Gear,Lure,Reel,Rod,Tackle
-Shades of Green,Emerald,Forest,Kelly,Olive
-Detergents,All,Era,Gain,Tide
-Title TV Doctors,Grey,House,Howser,Quinn
-Kinds of Meat,Beef,Pork,Poultry,Venison
-Universities,Brown,Duke,Howard,Rice
-"Little Women" Sisters,Amy,Beth,Jo,Meg
-Traffic Signs,Detour,Slow,Stop,Yield
-Magazines,Fortune,Rolling Stone,Vogue,Wired
-Ear Parts,Anvil,Cochlea,Hammer,Stirrup
-Animals with Tusks,Elephant,Hippo,Narwhal,Warthog
-Toms,Cruise,Holland,Petty,Waits
-Parts of a Book,Cover,Jacket,Page,Spine
-Flightless Birds,Emu,Kiwi,Ostrich,Penguin
-Fish,Skate,Sole,Tang,Tetra
-Joints,Hip,Knee,Shoulder,Wrist
-Words with "i",Mac,Pad,Phone,Pod
-Fictional Spies,Bond,Hunt,Ryan,Smart
-Cuts of Beef,Flank,Loin,Round,Shank
-Rock Paper Scissors,Rock,Paper,Scissors,Shoot
-Lucky Charms Marshmallows,Clover,Horseshoe,Moon,Rainbow
-Slang for Money,Cheddar,Dough,Paper,Stacks
-Synonyms for Sell,Hawk,Move,Peddle,Vend
-Bagel Flavors,Everything,Onion,Plain,Poppy
-Units of Measure,Hertz,Mole,Newton,Second
-Sunglasses,Aviator,Cat Eye,Wayfarer,Wraparound
+Keyboard Keys,hint,Option,Return,Shift,Tab
+Magazines,hint,Essence,People,Time,Us
+Dog Breeds (Informally),hint,Lab,Peke,Pit,Pom
+Cleaning Verbs,hint,Dust,Mop,Sweep,Vacuum
+Synonyms For Sad,hint,Blue,Down,Glum,Low
+Rappers,hint,Common,Future,Ice Cube,Q-Tip
+Slang for Toilet,hint,Can,Head,John,Throne,
+Things that are Red,hint,Cherry,Fire Truck,Ruby,Stop Sign
+Vegetables,hint,Beet,Carrot,Corn,Onion
+Birds,hint,Crane,Jay,Swallow,Turkey
+Things With Wings,hint,Airplane,Angel,Bird,Pegasus
+Slow Animals,hint,Loris,Sloth,Snail,Tortoise
+Silent "G",hint,Gnat,Gnaw,Gnocchi,Gnome
+Hondas,hint,Accord,Civic,Passport,Pilot
+Fishing Gear,hint,Lure,Reel,Rod,Tackle
+Shades of Green,hint,Emerald,Forest,Kelly,Olive
+Detergents,hint,All,Era,Gain,Tide
+Title TV Doctors,hint,Grey,House,Howser,Quinn
+Kinds of Meat,hint,Beef,Pork,Poultry,Venison
+Universities,hint,Brown,Duke,Howard,Rice
+"Little Women" Sisters,hint,Amy,Beth,Jo,Meg
+Traffic Signs,hint,Detour,Slow,Stop,Yield
+Magazines,hint,Fortune,Rolling Stone,Vogue,Wired
+Ear Parts,hint,Anvil,Cochlea,Hammer,Stirrup
+Animals with Tusks,hint,Elephant,Hippo,Narwhal,Warthog
+Toms,hint,Cruise,Holland,Petty,Waits
+Parts of a Book,hint,Cover,Jacket,Page,Spine
+Flightless Birds,hint,Emu,Kiwi,Ostrich,Penguin
+Fish,hint,Skate,Sole,Tang,Tetra
+Joints,hint,Hip,Knee,Shoulder,Wrist
+Words with "i",hint,Mac,Pad,Phone,Pod
+Fictional Spies,hint,Bond,Hunt,Ryan,Smart
+Cuts of Beef,hint,Flank,Loin,Round,Shank
+Rock Paper Scissors,hint,Rock,Paper,Scissors,Shoot
+Lucky Charms Marshmallows,hint,Clover,Horseshoe,Moon,Rainbow
+Slang for Money,hint,Cheddar,Dough,Paper,Stacks
+Synonyms for Sell,hint,Hawk,Move,Peddle,Vend
+Bagel Flavors,hint,Everything,Onion,Plain,Poppy
+Units of Measure,hint,Hertz,Mole,Newton,Second
+Sunglasses,hint,Aviator,Cat Eye,Wayfarer,Wraparound

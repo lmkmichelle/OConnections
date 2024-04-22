@@ -47,7 +47,8 @@ let rec convert_to_int_list acc = function
     let num = int_of_string hd in
     convert_to_int_list (num :: acc) tl
 (** Main game function.*)
-let game () = 
+
+let game () = print_endline "here"; 
   let words_array = Array.make 16 (Word.make "" "") in
   (* Store all elements from all four categories into one [word array] *)
   for i = 0 to (List.length const) - 1 do
@@ -55,7 +56,9 @@ let game () =
      words_array.(4 * i + j) <- (List.nth const i).items.(j)
     done
   done;
-  let () = shuffle words_array in
+  let () = print_endline "here"; 
+  shuffle words_array in
+
   (* Prints out the words in a stylized 4x4 grid.*)
   for words = 0 to (Array.length words_array - 1) do 
     if (words mod 4 = 0 && words <> 0) then 
@@ -89,7 +92,16 @@ if List.length numbers = 4 then
       word1_category = word4_category) || (word1_category = word3_category &&
       word1_category = word4_category) || (word2_category = word3_category &&
       word2_category = word4_category)
-      then print_endline "One away!"
+      then 
+      let three_category = 
+        if word1_category = word2_category then word1_category
+        else if word1_category = word3_category then word1_category
+        else if word1_category = word4_category then word1_category
+        else word2_category 
+      in 
+      let category_tried = List.find (fun x -> x.name = three_category) const in 
+      let hint = category_tried.hint in 
+      print_endline ("One Away! Hint: " ^ hint)
   else
     print_endline "Nope!" 
 else
