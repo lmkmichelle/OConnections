@@ -1,10 +1,10 @@
-Palindromes,Kayak,Level,Mom,Racecar
-Letter Homophones,Are,Queue,Sea,Why
-Members of a Trio,Amigo,King,Stooge,Tenor
-___ Man Superheroes,Bat,Iron,Spider,Super
-Clue Characters,Green,Mustard,Plum,Scarlet
-Members of a Septet,Sea,Sin,Sister,Wonder
-___ Fish that aren't Fish,Cray,Jelly,Silver,Star
-Things With Keys,Cryptography,Florida,Locksmith,Piano
-Insects,Ant,Beetle,Mantis,Termite
-Zodiac Symbols,Fish,Goat,Scales,Twins
+Palindromes,a,Kayak,Level,Mom,Racecar
+Letter Homophones,a,Are,Queue,Sea,Why
+Members of a Trio,a,Amigo,King,Stooge,Tenor
+___ Man Superheroes,a,Bat,Iron,Spider,Super
+Clue Characters,a,Green,Mustard,Plum,Scarlet
+Members of a Septet,a,Sea,Sin,Sister,Wonder
+___ Fish that aren't Fish,a,Cray,Jelly,Silver,Star
+Things With Keys,a,Cryptography,Florida,Locksmith,Piano
+Insects,a,Ant,Beetle,Mantis,Termite
+Zodiac Symbols,a,Fish,Goat,Scales,Twins

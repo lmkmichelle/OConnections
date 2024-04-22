@@ -1,10 +1,10 @@
-Wet Weather, Hail, Rain, Sleet, Snow
-Footwear,Boot,Loafer,Pump,Sneaker
-Facial Features,Cheek,Eye,Mouth,Nose
-Sneaker Brands,Adidas,Nike,Puma,Reebok
-Streaming Services,Hulu,Netflix,Peacock,Palindromes
-Monopoly Squares,Boardwalk,Chance,Go,Jail
-Leg Parts,Ankle,Knee,Shin,Thigh
-Board Games,Backgammon,Checkers,Chess,Go
-Sports,Cricket,Fencing,Polo,Squash
-Fruit,Date,Kiwi,Lemon,Orange
+Wet Weather,a,Hail, Rain, Sleet, Snow
+Footwear,a,Boot,Loafer,Pump,Sneaker
+Facial Features,a,Cheek,Eye,Mouth,Nose
+Sneaker Brands,a,Adidas,Nike,Puma,Reebok
+Streaming Services,a,Hulu,Netflix,Peacock,Palindromes
+Monopoly Squares,a,Boardwalk,Chance,Go,Jail
+Leg Parts,a,Ankle,Knee,Shin,Thigh
+Board Games,a,Backgammon,Checkers,Chess,Go
+Sports,a,Cricket,Fencing,Polo,Squash
+Fruit,a,Date,Kiwi,Lemon,Orange
