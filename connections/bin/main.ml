@@ -34,7 +34,7 @@ let const = [
   (List.nth blue x);
   (List.nth purple x);
 ]
-let shuffle a = for i = 0 to Array.length a * 2 do 
+let shuffle a = for i = 0 to Array.length a * 20 do 
   let l = Random.int (Array.length a - 1) in let k = Random.int (Array.length a - 1) 
 in let placeholder = a.(k) in a.(k) <- a.(l); a.(l) <- placeholder;
 done 
