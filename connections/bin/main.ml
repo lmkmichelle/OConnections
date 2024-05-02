@@ -3,30 +3,13 @@ open Category
 open Word
 
 let () = Random.self_init ()
-(** [data] is the type containing a category and its corresponding list of words.
-    Will also contain the difficulty level of the category. *)
 
-(* type data = 
-{ 
-  category : string;
-  items : string list
-} *)
-
-(** [word] is the type containing a word and the category it belongs to. *)
-(* type word = 
-{
-  word : string;
-  category : string;
-} *)
-(**four category lists, with each of them representing a different difficulty
-in the game.*)
 let yellow = make_category_list "yellow.txt" 1
 let green = make_category_list "green.txt" 2
 let blue = make_category_list "blue.txt" 3
 let purple = make_category_list "purple.txt" 4
 let size = List.length yellow
-(** Testing list of four categories, and random number used to decide which
-    categories from them are picked for a given time*)
+(** Testing list of four categories*)
 let x = Random.int (size) 
 let const = [
   (List.nth yellow x);
@@ -34,10 +17,8 @@ let const = [
   (List.nth blue x);
   (List.nth purple x);
 ]
-let shuffle a = for i = 0 to Array.length a * 2 do 
-  let l = Random.int (Array.length a - 1) in let k = Random.int (Array.length a - 1) 
-in let placeholder = a.(k) in a.(k) <- a.(l); a.(l) <- placeholder;
-done 
+
+
 
 (** Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
     (ex. [10; 1; 4; 13])*)
@@ -46,6 +27,7 @@ let rec convert_to_int_list acc = function
 | hd :: tl ->
     let num = int_of_string hd in
     convert_to_int_list (num :: acc) tl
+  
 (** Main game function.*)
 let game () = 
   let words_array = Array.make 16 (Word.make "" "") in
