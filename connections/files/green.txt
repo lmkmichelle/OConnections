@@ -1,40 +1,40 @@
-NBA Teams,Bucks,Heat,Jazz,Nets
-Units of Length,Foot,League,Mile,Yard
-Synonyms for Eat,Chow,Gobble,Scarf,Wolf
-Musicals Beginning with "C",Cabaret,Carousel,Cats,Chicago
-Condiments,Ketchup,Mayo,Relish,Tartar
-Shades of Blue,Baby,Midnight,Powder,Royal
-Baby Animals,Calf,Cub,Joey,Kid
-Mattress Sizes,Full,King,Queen,Twin
-Tops,Cami,Halter,Tank,Tee
-Countries,Chad,Georgia,Jordan,Togo
-Terms of Endearment,Boo,Honey,Sugar,Sweetie
-Deadly Sins,Envy,Greed,Lust,Pride
-Greek Letters,Beta,Chi,Delta,Iota
-Famous Brothers,Jonas,Marx,Warner,Wright
-Colors,Brown,Pink,Turquoise,Violet
-Tree Nuts,Almond,Cashew,Pecan,Walnut
-Ship Directions,Bow,Port,Starboard,Stern
-Awards,Cup,Medal,Ribbon,Trophy
-Anti-Vampire,Crucifix,Garlic,Mirror,Stake
-Royal Titles,Baron,Earl,King,Prince
-Web Browsers,Chrome,Edge,Opera,Safari
-Animal Noses,Beak,Muzzle,Snout,Trunk
-Dance Fads,Dougie,Macarena,Mashed Potato,Twist
-Video Game Consoles,Dreamcast,Genesis,Switch,Wii
-Mild Oaths,Darn,Fudge,Heck,Shoot
-Synonyms for Imitate,Copy,Echo,Mimic,Parrot
-Organs,Heart,Kidney,Liver,Lung
-File Extensions,Gif,Pdf,Tiff,Zip
-Arithmetic Operations,Add,Divide,Multiply,Subtract
-Pasta Shapes,Bowtie,Elbow,Shell,Spiral
-3-D Shapes,Cone,Cube,Pyramid,Sphere
-Board Games,Clue,Risk,Sorry,Trouble
-Sandwiches,Club,Cuban,Melt,Sub
-Music Genres,Blues,Country,Funk,Soul
-Metal Elements,Iron,Lead,Tin,Zinc
-Chocolate Bars,Chunky,Crunch,Mars,Mounds
-Bike Parts,Brake,Chain,Saddle,Spoke
-Land Formations,Hill,Mountain,Plateau,Valley
-Hairstyles,Bob,Crop,Pixie,Shag
-Coverings,Cap,Cover,Lid,Top
+NBA Teams,hint,Bucks,Heat,Jazz,Nets
+Units of Length,hint,Foot,League,Mile,Yard
+Synonyms for Eat,hint,Chow,Gobble,Scarf,Wolf
+Musicals Beginning with "C",hint,Cabaret,Carousel,Cats,Chicago
+Condiments,hint,Ketchup,Mayo,Relish,Tartar
+Shades of Blue,hint,Baby,Midnight,Powder,Royal
+Baby Animals,hint,Calf,Cub,Joey,Kid
+Mattress Sizes,hint,Full,King,Queen,Twin
+Tops,hint,Cami,Halter,Tank,Tee
+Countries,hint,Chad,Georgia,Jordan,Togo
+Terms of Endearment,hint,Boo,Honey,Sugar,Sweetie
+Deadly Sins,hint,Envy,Greed,Lust,Pride
+Greek Letters,hint,Beta,Chi,Delta,Iota
+Famous Brothers,hint,Jonas,Marx,Warner,Wright
+Colors,hint,Brown,Pink,Turquoise,Violet
+Tree Nuts,hint,Almond,Cashew,Pecan,Walnut
+Ship Directions,hint,Bow,Port,Starboard,Stern
+Awards,hint,Cup,Medal,Ribbon,Trophy
+Anti-Vampire,hint,Crucifix,Garlic,Mirror,Stake
+Royal Titles,hint,Baron,Earl,King,Prince
+Web Browsers,hint,Chrome,Edge,Opera,Safari
+Animal Noses,hint,Beak,Muzzle,Snout,Trunk
+Dance Fads,hint,Dougie,Macarena,Mashed Potato,Twist
+Video Game Consoles,hint,Dreamcast,Genesis,Switch,Wii
+Mild Oaths,hint,Darn,Fudge,Heck,Shoot
+Synonyms for Imitate,hint,Copy,Echo,Mimic,Parrot
+Organs,hint,Heart,Kidney,Liver,Lung
+File Extensions,hint,Gif,Pdf,Tiff,Zip
+Arithmetic Operations,hint,Add,Divide,Multiply,Subtract
+Pasta Shapes,hint,Bowtie,Elbow,Shell,Spiral
+3-D Shapes,hint,Cone,Cube,Pyramid,Sphere
+Board Games,hint,Clue,Risk,Sorry,Trouble
+Sandwiches,hint,Club,Cuban,Melt,Sub
+Music Genres,hint,Blues,Country,Funk,Soul
+Metal Elements,hint,Iron,Lead,Tin,Zinc
+Chocolate Bars,hint,Chunky,Crunch,Mars,Mounds
+Bike Parts,hint,Brake,Chain,Saddle,Spoke
+Land Formations,hint,Hill,Mountain,Plateau,Valley
+Hairstyles,hint,Bob,Crop,Pixie,Shag
+Coverings,hint,Cap,Cover,Lid,Top

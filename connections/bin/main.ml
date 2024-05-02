@@ -17,7 +17,7 @@ let const = [
   (List.nth blue x);
   (List.nth purple x);
 ]
-let shuffle a = for i = 0 to Array.length a * 2 do 
+let shuffle a = for i = 0 to Array.length a * 20 do 
   let l = Random.int (Array.length a - 1) in let k = Random.int (Array.length a - 1) 
 in let placeholder = a.(k) in a.(k) <- a.(l); a.(l) <- placeholder;
 done 
@@ -31,24 +31,16 @@ let rec convert_to_int_list acc = function
 | hd :: tl ->
     let num = int_of_string hd in
     convert_to_int_list (num :: acc) tl
-
-(* Helper function to update guessed words for a category *)
-let array_eliminate (l1 : Word.t array) (l2 : Word.t array) =
-  let l2_list = Array.to_list l2 in
-  let l1_list = Array.to_list l1 in
-  let l2_filtered = (List.filter (fun word -> (word.word <> "empty")) l2_list) in
-  (* let () = List.iter (fun word -> Printf.printf "%s " word.word) l2_filtered in *)
-  (Array.of_list (List.filter (fun x -> not (List.mem x l2_filtered)) l1_list))
-
-(* Helper function to update words_array with correctly guessed words *)
-let update_words_array (words_array : Word.t array) (guessed_word : Word.t array) =
-  let guessed_list = Array.to_list guessed_word in
-  let guessed_filtered = Array.of_list ((List.filter (fun word -> word.word <> "empty")) guessed_list) in
-  let remaining = array_eliminate words_array guessed_word in
-  Array.append guessed_filtered remaining
-
-
-let rec game num words_array (guessed_words : Word.t array) =
+(** Main game function.*)
+let game () = 
+  let words_array = Array.make 16 (Word.make "" "") in
+  (* Store all elements from all four categories into one [word array] *)
+  for i = 0 to (List.length const) - 1 do
+    for j = 0 to Array.length ((List.nth const i).items) - 1 do
+     words_array.(4 * i + j) <- (List.nth const i).items.(j)
+    done
+  done;
+  let () = shuffle words_array in
   (* Prints out the words in a stylized 4x4 grid.*)
   for words = 0 to (Array.length words_array - 1) do 
     if (words mod 4 = 0 && words <> 0) then 
@@ -98,13 +90,11 @@ let rec game num words_array (guessed_words : Word.t array) =
       word1_category = word4_category) || (word1_category = word3_category &&
       word1_category = word4_category) || (word2_category = word3_category &&
       word2_category = word4_category)
-      then let () = print_endline "One away!" in
-      game num words_array guessed_words
-    else
-      let () = print_endline "Nope!" in
-      game num words_array guessed_words
+      then print_endline "One away!"
   else
-    print_endline ("Enter 4 numbers for 4 words.")
+    print_endline "Nope!" 
+else
+  print_endline ("Enter 4 numbers for 4 words.")
 
 let rec main_loop words_array =
   game (Array.length words_array) words_array guessed_words;

@@ -1,5 +1,6 @@
 type t = {
   name : string;
+  hint : string;
   items : Word.t array;
   difficulty : string;
 }
