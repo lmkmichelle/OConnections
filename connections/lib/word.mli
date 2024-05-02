@@ -1,7 +1,9 @@
 type t = {
-  word : string;
-  category : string;
+  mutable word : string;
+  mutable category : string;
 }
+
+val is_empty : t -> bool
 
 val make : string -> string -> t
 (**makes a t from strings [s1] and [s2] which are provided as input, with s1
