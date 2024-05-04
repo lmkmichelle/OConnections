@@ -15,21 +15,27 @@ let const x = [
   (List.nth purple x);
 ]
 
-let shuffle a = 
-  for _ = 0 to Array.length a * 20 do 
-  let l = Random.int (Array.length a - 1) in let k = Random.int (Array.length a - 1) 
-in let placeholder = a.(k) in a.(k) <- a.(l); a.(l) <- placeholder;
-done 
+let shuffle a =
+  for _ = 0 to Array.length a * 20 do
+    let l = Random.int (Array.length a - 1) in
+    let k = Random.int (Array.length a - 1) in
+    let placeholder = a.(k) in
+    a.(k) <- a.(l);
+    a.(l) <- placeholder
+  done
 
 let array_eliminate (l1 : Word.t array) (l2 : Word.t array) =
   let l2_list = Array.to_list l2 in
   let l1_list = Array.to_list l1 in
-  let l2_filtered = (List.filter (fun word -> (word.word <> "empty")) l2_list) in
+  let l2_filtered = (List.filter (fun word -> word.word <> "empty") l2_list) in
   (Array.of_list (List.filter (fun x -> not (List.mem x l2_filtered)) l1_list))
 
 let update_words_array (words_array : Word.t array) (guessed_word : Word.t array) =
   let guessed_list = Array.to_list guessed_word in
-  let guessed_filtered = Array.of_list ((List.filter (fun word -> word.word <> "empty")) guessed_list) in
+  let guessed_filtered = 
+    Array.of_list 
+    ((List.filter (fun word -> word.word <> "empty")) guessed_list) 
+  in
   let remaining = array_eliminate words_array guessed_word in
   Array.append guessed_filtered remaining
 
