@@ -7,6 +7,8 @@ let () = Random.self_init ()
 let const = const random_num 
 let guessed_words = guessed_words_init
 
+let number_of_lives = ref 4
+
 (* Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
     (ex. [10; 1; 4; 13])*)
 let rec convert_to_int_list acc = function
@@ -82,6 +84,9 @@ let rec game num words_array (guessed_words : Word.t array) =
       || (word1_category = word3_category && word1_category = word4_category)
       || (word2_category = word3_category && word2_category = word4_category)
     then
+      if !number_of_lives = 0 then print_endline ("Out of tries. Better luck next time!")
+      else 
+      let () = decr number_of_lives in
       let three_category =
         if word1_category = word2_category then word1_category
         else if word1_category = word3_category then word1_category
@@ -90,7 +95,17 @@ let rec game num words_array (guessed_words : Word.t array) =
       in
       let category_tried = List.find (fun x -> x.name = three_category) const in
       let hint = category_tried.hint in
-      print_endline ("One Away! Hint: " ^ hint)
+      let () = print_endline ("One Away! Hint: " ^ hint) in
+      let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
+      game num words_array guessed_words
+    else 
+      if !number_of_lives = 0 then print_endline ("Out of tries. Better luck next time!")
+      else 
+      let () = decr number_of_lives in
+      let () = print_endline ("Nope!") in
+      let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
+      game num words_array guessed_words
+
     else print_endline "Enter 4 numbers for 4 words."
 
 let rec main_loop words_array =
