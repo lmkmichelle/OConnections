@@ -1,29 +1,12 @@
 open Connections
 open Category
 open Word
+open Game
 
 let () = Random.self_init ()
-let yellow = make_category_list "yellow.txt" "yellow"
-let green = make_category_list "green.txt" "green"
-let blue = make_category_list "blue.txt" "blue"
-let purple = make_category_list "purple.txt" "purple"
-let size = List.length yellow
-(* Testing list of four categories, and random number used to decide which
-    categories from them are picked for a given time *)
-let x = Random.int (size) 
-let const = [
-  (List.nth yellow x);
-  (List.nth green x);
-  (List.nth blue x);
-  (List.nth purple x);
-]
-let shuffle a = for i = 0 to Array.length a * 20 do 
-  let l = Random.int (Array.length a - 1) in let k = Random.int (Array.length a - 1) 
-in let placeholder = a.(k) in a.(k) <- a.(l); a.(l) <- placeholder;
-done 
+let const = const random_num 
+let guessed_words = guessed_words_init
 
-(* Define a type to keep track of guessed words for each category *)
-let guessed_words = Array.make 16 (Word.make "empty" "empty")
 (* Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
     (ex. [10; 1; 4; 13])*)
 let rec convert_to_int_list acc = function
@@ -31,22 +14,6 @@ let rec convert_to_int_list acc = function
 | hd :: tl ->
     let num = int_of_string hd in
     convert_to_int_list (num :: acc) tl
-
-(* Helper function to update guessed words for a category *)
-let array_eliminate (l1 : Word.t array) (l2 : Word.t array) =
-  let l2_list = Array.to_list l2 in
-  let l1_list = Array.to_list l1 in
-  let l2_filtered = (List.filter (fun word -> (word.word <> "empty")) l2_list) in
-  (* let () = List.iter (fun word -> Printf.printf "%s " word.word) l2_filtered in *)
-  (Array.of_list (List.filter (fun x -> not (List.mem x l2_filtered)) l1_list))
-
-(* Helper function to update words_array with correctly guessed words *)
-let update_words_array (words_array : Word.t array) (guessed_word : Word.t array) =
-  let guessed_list = Array.to_list guessed_word in
-  let guessed_filtered = Array.of_list ((List.filter (fun word -> word.word <> "empty")) guessed_list) in
-  let remaining = array_eliminate words_array guessed_word in
-  Array.append guessed_filtered remaining
-
 
 let rec game num words_array (guessed_words : Word.t array) =
   (* Prints out the words in a stylized 4x4 grid.*)
@@ -86,9 +53,7 @@ let rec game num words_array (guessed_words : Word.t array) =
       let () = guessed_words.(17 - num) <- word2 in
       let () = guessed_words.(18 - num) <- word3 in
       let () = guessed_words.(19 - num) <- word4 in
-      let guessed_list = Array.to_list guessed_words in
-      let check_empty = List.filter (fun word -> (word.word = "empty")) guessed_list in
-      if List.length check_empty = 0 then
+      if check_win guessed_words then
         print_endline "You win!"
       else
         game (num - 4) (update_words_array words_array guessed_words) guessed_words
