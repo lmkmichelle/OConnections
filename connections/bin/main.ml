@@ -4,9 +4,8 @@ open Word
 open Game
 
 let () = Random.self_init ()
-let const = const random_num 
-let guessed_words = guessed_words_init
 
+let guessed_words = guessed_words_init
 let number_of_lives = ref 4
 
 (* Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
@@ -17,7 +16,7 @@ let rec convert_to_int_list acc = function
       let num = int_of_string hd in
       convert_to_int_list (num :: acc) tl
 
-let rec game num words_array (guessed_words : Word.t array) =
+let rec game num words_array (guessed_words : Word.t array) const hint_mode =
   (* Prints out the words in a stylized 4x4 grid.*)
   for words = 0 to Array.length words_array - 1 do
     if words mod 4 = 0 && words <> 0 then
@@ -60,7 +59,7 @@ let rec game num words_array (guessed_words : Word.t array) =
       let () =
         print_endline "You can not guess the same word twice. Please try again."
       in
-      game num words_array guessed_words
+      game num words_array guessed_words const hint_mode
     else if
       word1_category = word2_category
       && word1_category = word3_category
@@ -77,7 +76,7 @@ let rec game num words_array (guessed_words : Word.t array) =
       else
         game (num - 4)
           (update_words_array words_array guessed_words)
-          guessed_words
+          guessed_words const hint_mode
     else if
       (word1_category = word2_category && word1_category = word3_category)
       || (word1_category = word2_category && word1_category = word4_category)
@@ -95,30 +94,43 @@ let rec game num words_array (guessed_words : Word.t array) =
       in
       let category_tried = List.find (fun x -> x.name = three_category) const in
       let hint = category_tried.hint in
-      let () = print_endline ("One Away! Hint: " ^ hint) in
-      let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
-      game num words_array guessed_words
+      if hint_mode = "yes" then
+        let () = print_endline ("One Away! Hint: " ^ hint) in
+        game num words_array guessed_words const hint_mode
+      else
+        let () = print_endline ("One Away!") in
+        let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
+      game num words_array guessed_words const hint_mode
     else 
       if !number_of_lives = 0 then print_endline ("Out of tries. Better luck next time!")
       else 
       let () = decr number_of_lives in
       let () = print_endline ("Nope!") in
       let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
-      game num words_array guessed_words
+      game num words_array guessed_words const hint_mode
 
     else print_endline "Enter 4 numbers for 4 words."
 
-let rec main_loop words_array =
-  game (Array.length words_array) words_array guessed_words;
+let rec main_loop const words_array hint =
+  
+  game (Array.length words_array) words_array guessed_words const hint;
   print_endline "Do you want to play again? (yes/no)";
   match read_line () with
-  | "yes" -> main_loop words_array
+  | "yes" -> main_loop const words_array hint
   | "no" -> print_endline "Thanks for playing!"
   | _ ->
       print_endline "Invalid input. Please enter 'yes' or 'no'.";
-      main_loop words_array
+      main_loop const words_array hint
 
 let _ =
+  (* dune exec bin/main.exe <hint_mode> <custom_difficulty> *)
+  if Array.length Sys.argv <> 3 then
+    print_endline ("Format: dune exec bin/main.exe <hint_mode> <custom_difficulty>
+    <hint_mode> should be 'yes' or 'no', depending on if you want hints.
+    <custom_difficulty> should be the color difficulty you want (green, yellow, blue, purple), 
+    or 'normal' for standard Connections.")
+  else
+  let const = const Sys.argv.(2) random_num_list in
   let words_array = Array.make (List.length const * 4) (Word.make "" "") in
   (* Store all elements from all four categories into one [word array] *)
   for i = 0 to List.length const - 1 do
@@ -127,4 +139,4 @@ let _ =
     done
   done;
   let () = shuffle words_array in
-  main_loop words_array
+  main_loop const words_array Sys.argv.(1)

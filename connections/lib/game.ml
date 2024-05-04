@@ -5,16 +5,50 @@ let green = make_category_list "green.txt" "green"
 let blue = make_category_list "blue.txt" "blue"
 let purple = make_category_list "purple.txt" "purple"
 
-let random_num = 
-  Random.int (List.length yellow)
-let guessed_words_init = Array.make 16 (Word.make "empty" "empty")
-let const x = [
-  (List.nth yellow x);
-  (List.nth green x);
-  (List.nth blue x);
-  (List.nth purple x);
-]
+let random_num_list = 
+  [| Random.int (List.length yellow);
+    Random.int (List.length yellow);
+    Random.int (List.length yellow);
+    Random.int (List.length yellow)
+    |]
 
+let guessed_words_init = Array.make 16 (Word.make "empty" "empty")
+let const custom random_num_list = 
+  if custom = "yellow" then
+    [
+    (List.nth yellow random_num_list.(0));
+    (List.nth yellow random_num_list.(1));
+    (List.nth yellow random_num_list.(2));
+    (List.nth yellow random_num_list.(3));
+    ]
+  else if custom = "blue" then
+    [
+    (List.nth blue random_num_list.(0));
+    (List.nth blue random_num_list.(1));
+    (List.nth blue random_num_list.(2));
+    (List.nth blue random_num_list.(3));
+    ]
+  else if custom = "green" then
+    [
+    (List.nth green random_num_list.(0));
+    (List.nth green random_num_list.(1));
+    (List.nth green random_num_list.(2));
+    (List.nth green random_num_list.(3));
+    ]
+  else if custom = "purple" then 
+    [
+    (List.nth purple random_num_list.(0));
+    (List.nth purple random_num_list.(1));
+    (List.nth purple random_num_list.(2));
+    (List.nth purple random_num_list.(3));
+    ]
+  else 
+    [
+    (List.nth yellow random_num_list.(0));
+    (List.nth green random_num_list.(1));
+    (List.nth blue random_num_list.(2));
+    (List.nth purple random_num_list.(3));
+    ]
 let shuffle a =
   for _ = 0 to Array.length a * 20 do
     let l = Random.int (Array.length a - 1) in

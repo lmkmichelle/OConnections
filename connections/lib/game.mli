@@ -3,10 +3,10 @@
 val guessed_words_init : Word.t array
 
 (** Generates a random integer than can be used to select words from the dictionary. *)
-val random_num : int
+val random_num_list : int array
 
 (** Creates a list of four categories, one from each difficulty level. *)
-val const: int -> Category.t list
+val const: string -> int array -> Category.t list
 
 (** [shuffle a] shuffles array [a]'s ordering such that the elements are put randomly 
 into new indices. *)
