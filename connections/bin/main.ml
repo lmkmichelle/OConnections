@@ -17,7 +17,7 @@ let const =
   [ List.nth yellow x; List.nth green x; List.nth blue x; List.nth purple x ]
 
 let shuffle a =
-  for i = 0 to Array.length a * 20 do
+  for i = 0 to Array.length a * 40 do
     let l = Random.int (Array.length a - 1) in
     let k = Random.int (Array.length a - 1) in
     let placeholder = a.(k) in
@@ -56,15 +56,56 @@ let update_words_array (words_array : Word.t array)
   let remaining = array_eliminate words_array guessed_word in
   Array.append guessed_filtered remaining
 
+let color_match i =
+  if i = "yellow" then ANSITerminal.yellow
+  else if i = "green" then ANSITerminal.green
+  else if i = "blue" then ANSITerminal.blue
+  else ANSITerminal.magenta
+(**takes string i, which represents the difficulty of a category and returns the 
+    corresponding ANSITerminal.style for it to be printed in the right color*)
+let category_find e (l : Category.t list) =
+  let x =
+    ref
+      (Category.make "none" "none"
+         (Array.make 4 (Word.make "none" "none"))
+         "none")
+  in
+  for i = 0 to 3 do
+    if contains e (List.nth l i) then x := List.nth l i
+  done;
+  !x
+(**searches through a list l of categories to find which one contains element e*)
 let rec game num words_array (guessed_words : Word.t array) =
   (* Prints out the words in a stylized 4x4 grid.*)
-  for words = 0 to Array.length words_array - 1 do
+  let guessed =
+    Array.find_index
+      (function
+        | x -> x = Word.make "empty" "empty")
+      guessed_words
+  (* in let () = print_endline (string_of_int (Option.get guessed)) in *)
+  in
+  for i = 0 to Option.get guessed - 1 do
+    let () = if i mod 4 = 0 
+      then let () = 
+    print_endline "" in print_endline (name (category_find guessed_words.(i) const)) 
+      else print_string "" 
+    in
+    if i mod 4 = 0 then 
+    let () = print_newline () in
+    ANSITerminal.printf
+      [ color_match (diff (category_find guessed_words.(i) const)) ]
+      "[%i: %s]" (i + 1) words_array.(i).word
+else ANSITerminal.printf
+[ color_match (diff (category_find guessed_words.(i) const)) ]
+"[%i: %s]" (i + 1) words_array.(i).word
+  done;
+  for words = Option.get guessed to Array.length words_array - 1 do
     if words mod 4 = 0 && words <> 0 then
       let () = print_newline () in
-      ANSITerminal.printf [ ANSITerminal.green ] "[%i: %s]" (words + 1)
+      ANSITerminal.printf [ ANSITerminal.black ] "[%i: %s]" (words + 1)
         words_array.(words).word
     else
-      ANSITerminal.printf [ ANSITerminal.green ] "[%i: %s]" (words + 1)
+      ANSITerminal.printf [ ANSITerminal.black ] "[%i: %s]" (words + 1)
         words_array.(words).word
   done;
 
