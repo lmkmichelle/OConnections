@@ -1,60 +1,23 @@
 open Connections
 open Category
 open Word
+open Game
 
 let () = Random.self_init ()
-let yellow = make_category_list "yellow.txt" "yellow"
-let green = make_category_list "green.txt" "green"
-let blue = make_category_list "blue.txt" "blue"
-let purple = make_category_list "purple.txt" "purple"
-let size = List.length yellow
 
-(* Testing list of four categories, and random number used to decide which
-   categories from them are picked for a given time *)
-let x = Random.int size
+let guessed_words = guessed_words_init
+let number_of_lives = ref 4
 
-let const =
-  [ List.nth yellow x; List.nth green x; List.nth blue x; List.nth purple x ]
-
-let shuffle a =
-  for i = 0 to Array.length a * 40 do
-    let l = Random.int (Array.length a - 1) in
-    let k = Random.int (Array.length a - 1) in
-    let placeholder = a.(k) in
-    a.(k) <- a.(l);
-    a.(l) <- placeholder
-  done
-
-(* Define a type to keep track of guessed words for each category *)
-let guessed_words = Array.make 16 (Word.make "empty" "empty")
-
-(* Helper function that converts a string of numbers (ex. "10 1 4 13") into an
-   int list (ex. [10; 1; 4; 13])*)
+(* Helper function that converts a string of numbers (ex. "10 1 4 13") into an int list
+    (ex. [10; 1; 4; 13])*)
 let rec convert_to_int_list acc = function
   | [] -> List.rev acc
   | hd :: tl ->
       let num = int_of_string hd in
       convert_to_int_list (num :: acc) tl
 
-(* Helper function to update guessed words for a category *)
-let array_eliminate (l1 : Word.t array) (l2 : Word.t array) =
-  let l2_list = Array.to_list l2 in
-  let l1_list = Array.to_list l1 in
-  let l2_filtered = List.filter (fun word -> word.word <> "empty") l2_list in
-  (* let () = List.iter (fun word -> Printf.printf "%s " word.word) l2_filtered
-     in *)
-  Array.of_list (List.filter (fun x -> not (List.mem x l2_filtered)) l1_list)
+let rec game num words_array (guessed_words : Word.t array) const hint_mode =
 
-(* Helper function to update words_array with correctly guessed words *)
-let update_words_array (words_array : Word.t array)
-    (guessed_word : Word.t array) =
-  let guessed_list = Array.to_list guessed_word in
-  let guessed_filtered =
-    Array.of_list
-      ((List.filter (fun word -> word.word <> "empty")) guessed_list)
-  in
-  let remaining = array_eliminate words_array guessed_word in
-  Array.append guessed_filtered remaining
 
 let color_match i =
   if i = "yellow" then ANSITerminal.yellow
@@ -140,7 +103,7 @@ else ANSITerminal.printf
       let () =
         print_endline "You can not guess the same word twice. Please try again."
       in
-      game num words_array guessed_words
+      game num words_array guessed_words const hint_mode
     else if
       word1_category = word2_category
       && word1_category = word3_category
@@ -152,21 +115,21 @@ else ANSITerminal.printf
       let () = guessed_words.(17 - num) <- word2 in
       let () = guessed_words.(18 - num) <- word3 in
       let () = guessed_words.(19 - num) <- word4 in
-      let guessed_list = Array.to_list guessed_words in
-      let check_empty =
-        List.filter (fun word -> word.word = "empty") guessed_list
-      in
-      if List.length check_empty = 0 then print_endline "You win!"
+      if check_win guessed_words then
+        print_endline "You win!"
       else
         game (num - 4)
           (update_words_array words_array guessed_words)
-          guessed_words
+          guessed_words const hint_mode
     else if
       (word1_category = word2_category && word1_category = word3_category)
       || (word1_category = word2_category && word1_category = word4_category)
       || (word1_category = word3_category && word1_category = word4_category)
       || (word2_category = word3_category && word2_category = word4_category)
     then
+      if !number_of_lives = 0 then print_endline ("Out of tries. Better luck next time!")
+      else 
+      let () = decr number_of_lives in
       let three_category =
         if word1_category = word2_category then word1_category
         else if word1_category = word3_category then word1_category
@@ -175,20 +138,43 @@ else ANSITerminal.printf
       in
       let category_tried = List.find (fun x -> x.name = three_category) const in
       let hint = category_tried.hint in
-      print_endline ("One Away! Hint: " ^ hint)
+      if hint_mode = "yes" then
+        let () = print_endline ("One Away! Hint: " ^ hint) in
+        game num words_array guessed_words const hint_mode
+      else
+        let () = print_endline ("One Away!") in
+        let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
+      game num words_array guessed_words const hint_mode
+    else 
+      if !number_of_lives = 0 then print_endline ("Out of tries. Better luck next time!")
+      else 
+      let () = decr number_of_lives in
+      let () = print_endline ("Nope!") in
+      let () = print_endline ("Number of tries remaining: " ^ (string_of_int !number_of_lives)) in
+      game num words_array guessed_words const hint_mode
+
     else print_endline "Enter 4 numbers for 4 words."
 
-let rec main_loop words_array =
-  game (Array.length words_array) words_array guessed_words;
+let rec main_loop const words_array hint =
+  
+  game (Array.length words_array) words_array guessed_words const hint;
   print_endline "Do you want to play again? (yes/no)";
   match read_line () with
-  | "yes" -> main_loop words_array
+  | "yes" -> main_loop const words_array hint
   | "no" -> print_endline "Thanks for playing!"
   | _ ->
       print_endline "Invalid input. Please enter 'yes' or 'no'.";
-      main_loop words_array
+      main_loop const words_array hint
 
 let _ =
+  (* dune exec bin/main.exe <hint_mode> <custom_difficulty> *)
+  if Array.length Sys.argv <> 3 then
+    print_endline ("Format: dune exec bin/main.exe <hint_mode> <custom_difficulty>
+    <hint_mode> should be 'yes' or 'no', depending on if you want hints.
+    <custom_difficulty> should be the color difficulty you want (green, yellow, blue, purple), 
+    or 'normal' for standard Connections.")
+  else
+  let const = const Sys.argv.(2) random_num_list in
   let words_array = Array.make (List.length const * 4) (Word.make "" "") in
   (* Store all elements from all four categories into one [word array] *)
   for i = 0 to List.length const - 1 do
@@ -197,4 +183,4 @@ let _ =
     done
   done;
   let () = shuffle words_array in
-  main_loop words_array
+  main_loop const words_array Sys.argv.(1)
