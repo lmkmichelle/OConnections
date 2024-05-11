@@ -17,3 +17,4 @@ val diff : t -> string
 (**returns the difficulty of a value of type t*)
 val name : t -> string
 (**returns the name of a value of type t*)
+val items : t -> Word.t array
