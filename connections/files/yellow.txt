@@ -1,40 +1,40 @@
-Wet Weather,hint,Hail, Rain, Sleet, Snow
-Footwear,hint,Boot,Loafer,Pump,Sneaker
-Facial Features,hint,Cheek,Eye,Mouth,Nose
-Sneaker Brands,hint,Adidas,Nike,Puma,Reebok
-Streaming Services,hint,Hulu,Netflix,Peacock,Prime 
-Monopoly Squares,hint,Boardwalk,Chance,Go,Jail
-Leg Parts,hint,Ankle,Knee,Shin,Thigh
-Board Games,hint,Backgammon,Checkers,Chess,Go
-Sports,hint,Cricket,Fencing,Polo,Squash
-Fruit,hint,Date,Kiwi,Lemon,Orange
-Spices Beginning With "C",hint,Cardamom,Clove,Coriander,Cumin
-Animal Group Names,hint,Flock,Pack,Pod,School
-Airlines,hint,Frontier,Spirit,United,Virgin
-Beds,hint,Bunk,Canopy,Murphy,Trundle
-Bird Sounds,hint,Caw,Chirp,Cluck,Tweet
-Coffee Drinks,hint,Americano,Cappuccino,Espresso,Latte
-Neckwear,hint,Ascot,Bolo,Scarf,Tie 
-Muscles (Informally),hint,Lat,Pec,Quad,Tri
-Off-White Shades,hint,Cream,Eggshell,Ivory,Vanilla
-Grains,hint,Barley,Oat,Rye,Spelt
-Music Genres,hint,Jazz,Pop,Punk,Rap
-Dog Breeds,hint,Boxer,Dalmatian,Husky,Poodle
-60's Band Members,hint,Beach Boy, Beatle, Byrd, Monkee
-Candy Bars,hint,Bounty,Crunch,Heath,Milky Way
-Desserts,hint,Cheesecake,Flan,Mousse,Tiramisu
-European Countries,hint,Denmark,Greece,Poland,Portugal
-Hats,hint,Beret,Bowler,Fedora,Fez
-Seven Dwarfs,hint,Bashful,Doc,Grumpy,Happy
-Winged Insects,hint,Fly,Gnat,Moth,Wasp
-NFL Players,hint,Bronco,Cowboy,Packer,Raven
-Vegetables that are also Fruits,hint,Cucumber,Eggplant,Pepper,Tomato
-Shoe Parts,hint,Heel,Lace,Sole,Tongue
-Boats,hint,Ferry,Junk,Tug,Yacht
-Pleasant Smells,hint,Aroma,Bouquet,Fragrance,Scent
-US Coins,hint,Dime,Nickel,Penny,Quarter
-Marsupials,hint,Kangaroo,Koala,Wallaby,Wombat
-Marine Mammals,hint,Dolphin,Manatee,Otter,Seal
-Trees,hint,Ash,Cedar,Maple,Pine
-Timekeeping Devices,hint,Clock,Hourglass,Sundial,Watch
-Woodwinds,hint,Bassoon,Clarinet,Flute,Oboe
+Wet Weather,Don't forget to bring your umbrella!,Hail, Rain, Sleet, Snow
+Footwear,Clothes for feet,Boot,Loafer,Pump,Sneaker
+Facial Features,parts of a portrait,Cheek,Eye,Mouth,Nose
+Sneaker Brands,Asics - Fila - New Balance,Adidas,Nike,Puma,Reebok
+Streaming Services,TV is dead and these are its murderers,Hulu,Netflix,Peacock,Prime 
+Monopoly Squares,related to the fast-dealing property trading game,Boardwalk,Chance,Go,Jail
+Leg Parts, Think of shoulder & elbow & forearm & wrist but below the waist,Ankle,Knee,Shin,Thigh
+Board Games,What is Monopoly?,Backgammon,Checkers,Chess,Go
+Sports,Blood & sweat and tears! (Or you could say rivalry & tournaments and winners!),Cricket,Fencing,Polo,Squash
+Fruit,Vegetables if they tasted good,Date,Kiwi,Lemon,Orange
+Spices Beginning With "C",3rd letter of the alphabet,Cardamom,Clove,Coriander,Cumin
+Animal Group Names,terms that signify a collectiveness,Flock,Pack,Pod,School
+Airlines,Can humans fly? Of course they can - if they pay 70 bucks to any of these!!,Frontier,Spirit,United,Virgin
+Beds,types of sleeping locations,Bunk,Canopy,Murphy,Trundle
+Bird Sounds,Imagine donald duck and big bird talking to each other,Caw,Chirp,Cluck,Tweet
+Coffee Drinks,Contains espresso,Americano,Cappuccino,Espresso,Latte
+Neckwear,neck fashion,Ascot,Bolo,Scarf,Tie 
+Muscles (Informally),Gym bro vocabulary,Lat,Pec,Quad,Tri
+Off-White Shades,fake white colors,Cream,Eggshell,Ivory,Vanilla
+Grains, edible seeds,Barley,Oat,Rye,Spelt
+Music Genres,Do Re Mi Fa Sol La Ti Do,Jazz,Pop,Punk,Rap
+Dog Breeds,Woof woof!,Boxer,Dalmatian,Husky,Poodle
+60's Band Members,add a "s" at the end and you'll get music legends,Beach Boy, Beatle, Byrd, Monkee
+Candy Bars,Things you would see on a candy crush screen,Bounty,Crunch,Heath,Milky Way
+Desserts,Sweet treats after a dinner,Cheesecake,Flan,Mousse,Tiramisu
+European Countries,Contestants in Eurovision Song Contest,Denmark,Greece,Poland,Portugal
+Hats,fashion items Mad Hatter and Willy Wonka would wear,Beret,Bowler,Fedora,Fez
+Seven Dwarfs,Snow White's friends,Bashful,Doc,Grumpy,Happy
+Winged Insects,Bugs that can fly,Fly,Gnat,Moth,Wasp
+NFL Players,Famous people that try to catch a prolate spheroid for a living,Bronco,Cowboy,Packer,Raven
+Vegetables that are also Fruits,When you can't decide whether to eat a fruit or a vegetable - why not both?,Cucumber,Eggplant,Pepper,Tomato
+Shoe Parts,parts of footwear,Heel,Lace,Sole,Tongue
+Boats,sea cars,Ferry,Junk,Tug,Yacht
+Pleasant Smells,these are like music for the nose,Aroma,Bouquet,Fragrance,Scent
+US Coins,penny & pence & pound are the British equivalent,Dime,Nickel,Penny,Quarter
+Marsupials,animals with pouches,Kangaroo,Koala,Wallaby,Wombat
+Marine Mammals,sea creatures that breathe air,Dolphin,Manatee,Otter,Seal
+Trees,perennial plants with an elongated stem - or trunk,Ash,Cedar,Maple,Pine
+Timekeeping Devices,tools to measure the fourth dimension,Clock,Hourglass,Sundial,Watch
+Woodwinds,advanced whistles,Bassoon,Clarinet,Flute,Oboe
