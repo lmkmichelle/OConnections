@@ -11,3 +11,4 @@ val make : string -> string -> t
 
 val test_word : t
 val test_word2 : t
+val test_word3 : t
