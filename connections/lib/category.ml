@@ -41,6 +41,30 @@ let make s1 s2 i s3 = { name = s1; hint = s2; items = i; difficulty = s3 }
 let diff c = c.difficulty
 let name c = c.name
 let items c = c.items
-(* let test_category = [ { name = "Category1"; hint = "Hint of Category1"; items
-   = [| make "word1" "Category1"; make "word2" "Category1"; make "word3"
-   "Category1"; |]; difficulty = 1; }; ] *)
+
+let test_category =
+  { name = "string"; hint = "string"; items = [||]; difficulty = "string" }
+
+let test_category2 =
+  {
+    name = "string";
+    hint = "string";
+    items = [| Word.test_word |];
+    difficulty = "string";
+  }
+
+let test_category3 =
+  {
+    name = "string";
+    hint = "string";
+    items = [| Word.test_word; Word.test_word2; Word.test_word3 |];
+    difficulty = "string";
+  }
+
+let test_category4 =
+  {
+    name = "abcd";
+    hint = "hi";
+    items = [| Word.test_word; Word.test_word2; Word.test_word3 |];
+    difficulty = "4";
+  }
