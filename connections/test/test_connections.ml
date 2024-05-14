@@ -6,9 +6,9 @@ let tests =
   "tests"
   >::: [
          ( "word_make" >:: fun _ ->
-           (*a basic test with a regular word and regular cattegory*)
+           (*a basic test with a regular word and regular category*)
            assert_equal test_word (Connections.Word.make "hello" "greeting");
-           (*test with a an empty string word and an empty string cattegory*)
+           (*test with a an empty string word and an empty string category*)
            assert_equal test_word2 (Connections.Word.make "" "");
            (*testing make with strings that have characters that are not
              letters*)
