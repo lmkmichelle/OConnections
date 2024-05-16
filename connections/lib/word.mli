@@ -2,12 +2,15 @@ type t = {
   mutable word : string;
   mutable category : string;
 }
+(** The type of a word. [word] is the string representing the word itself, and
+    [category] represents the category that this word belongs to. *)
 
 val is_empty : t -> bool
-
+(** [is_empty word] returns true if [word].word is an empty string, and false otherwise *)
+  
 val make : string -> string -> t
-(**makes a t from strings [s1] and [s2] which are provided as input, with s1
-   being the word and s2 being the category*)
+(** [make word category] makes a Word where [word] is the word and [category] 
+    is the category it belongs to. *)
 
 val test_word : t
 val test_word2 : t

@@ -12,15 +12,17 @@ pm:
   name: Emory Walsh
   netid: elw223
 # Set to false if you don't want your gallery entry to be public.
-publish: false
+publish: true
 # Pithy title
-title: "Connections"
+title: "O-Connections"
 # OK if this is a Cornell Github link, but public gallery viewers won't be able to see it.
-git-repo: "https://github.com/cs3110/textbook"
+git-repo: "https://github.coecis.cornell.edu/mzm24/3110FinalProject"
 # If you have no demo screencast, replace the url string with an empty string ""
 demo-video-url: ""
 # Write a short, attention-grabbing description of your project.
 desc: >
-  Our project is an implementation of the New York Times' game Connections, a game where there is a 4x4 grid
-  of words, and the words are each grouped into 4 random categories that the player must figure out. The
-  interface is in terminal, with colors implemented using ANSITerminal. 
+  Our project is a text-based spinoff implementation of the famous New York Times' game Connections,
+  a game where there is a 4x4 grid of words, and the words are each grouped into 4 random 
+  categories that the player must figure out. Unlike the New York Times' game, though,
+  O-Connections includes custom modes of varying difficulties, and unique hints to aid 
+  players through all-purple modes! 

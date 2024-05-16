@@ -4,20 +4,31 @@ type t = {
   items : Word.t array;
   difficulty : string;
 }
+(** The type for a category. [name] represents the name of a specific category (i.e.
+    "fruits"). [hint] represents the unique hint for a specific category. [items] 
+    is a Word.t array containing all Word.t that is in this specific category. 
+    [difficulty] represents the difficulty of this category, coded by colors. *)
 
 val contains : Word.t -> t -> bool
-(**searches through the items of c to check if any of them are equal to 
-    value e, returns true if one is*)
+(** [contains e c] Searches through the items of [c] to check if any of them are equal to 
+    value [e], returns true if one is. *)
+
 val make_category_list : string -> string -> t list
-(**makes a list of categories with difficulty [diff] from file with the name
+(** [make_category_list file diff] makes a list of categories with difficulty [diff] from file with the name
    [name], where [name] includes the .txt at the end*)
+
 val make : string -> string -> Word.t array -> string -> t
-(**makes a value of type t with name s1, hint s2, items i, and difficulty s3*)
+(** [make name hint i duff] makes a value of type t with name [name], hint [hint], 
+    items [i], and difficulty [diff] *)
+
 val diff : t -> string
-(**returns the difficulty of a value of type t*)
+(** [diff c] returns the difficulty of the category [c] *)
+
 val name : t -> string
-(**returns the name of a value of type t*)
+(** [name c] returns the name of the category [c] *)
+
 val items : t -> Word.t array
+(** [items c] returns an array containing all of the Words in category [c] *)
 
 val print_category : t -> unit
 (**prints categories to be used for debugging purposes*)

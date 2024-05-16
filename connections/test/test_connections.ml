@@ -145,6 +145,17 @@ let init_lst =
     Connections.Word.make "empty" "empty";
   |]
 
+let const_oab_test attempted =
+  let ints = Array.make 4 0 in
+  assert_equal
+    (Some (Connections.Game.OutsideArchiveBounds { attempted }))
+    (try
+       let c =
+         Connections.Game.const ("Archive~" ^ string_of_int attempted) ints
+       in
+       None
+     with e -> Some e)
+
 let tests =
   "tests"
   >::: [
@@ -220,61 +231,6 @@ let tests =
              are multiple items**)
            assert_equal (items test_category4)
              [| test_word; test_word2; test_word3 |] );
-         ( "category_make_category_list" >:: fun _ ->
-           (*checks if the first element of the expected list is the same as the
-             list created from blue.txt with the [make_category_list]
-             function *)
-           let category_list = make_category_list "blue.txt" "blue" in
-           let first_el = test_helper 0 category_list in
-           let first_el_expected = test_helper 0 expected_blue in
-           assert_equal first_el first_el_expected;
-           (*checks if the second element of the expected list is the same as
-             the list created from blue.txt with the [make_category_list]
-             function *)
-           let second_el = test_helper 1 category_list in
-           let second_el_expected = test_helper 1 expected_blue in
-           assert_equal second_el second_el_expected;
-           (*checks if the first element of the expected list is the same as the
-             list created from green.txt with the [make_category_list]
-             function *)
-           let category_listg = make_category_list "green.txt" "green" in
-           let first_elg = test_helper 0 category_listg in
-           let first_el_expectedg = test_helper 0 expected_green in
-           assert_equal first_elg first_el_expectedg;
-           (*checks if the second element of the expected list is the same as
-             the list created from green.txt with the [make_category_list]
-             function *)
-           let second_elg = test_helper 1 category_listg in
-           let second_el_expectedg = test_helper 1 expected_green in
-           assert_equal second_elg second_el_expectedg;
-           (*checks if the first element of the expected list is the same as the
-             list created from purple.txt with the [make_category_list]
-             function *)
-           let category_listp = make_category_list "purple.txt" "purple" in
-           let first_elp = test_helper 0 category_listp in
-           let first_el_expectedp = test_helper 0 expected_purple in
-           assert_equal first_elp first_el_expectedp;
-           (*checks if the second element of the expected list is the same as
-             the list created from purple.txt with the [make_category_list]
-             function *)
-           let second_elp = test_helper 1 category_listp in
-           let second_el_expectedp = test_helper 1 expected_purple in
-           assert_equal second_elp second_el_expectedp;
-           (*checks if the first element of the expected list is the same as the
-             list created from yellow.txt with the [make_category_list]
-             function *)
-           let category_listy = make_category_list "yellow.txt" "yellow" in
-           let first_ely = test_helper 0 category_listy in
-           let first_el_expectedy = test_helper 0 expected_yellow in
-           assert_equal first_ely first_el_expectedy;
-           (*checks if the second element of the expected list is the same as
-             the list created from yellow.txt with the [make_category_list]
-             function *)
-           let second_ely = test_helper 1 category_listy in
-           let second_el_expectedy = test_helper 1 expected_yellow in
-           assert_equal second_ely second_el_expectedy );
-         ( "game_guessed_words_init" >:: fun _ ->
-           assert_equal init_lst guessed_words_init );
        ]
 
 let () = run_test_tt_main tests

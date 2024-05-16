@@ -53,7 +53,7 @@ let make_category_list file diff =
   category_list_of_string_array_list diff
     (separate_string_list (list_from_file file))
 
-let make s1 s2 i s3 = { name = s1; hint = s2; items = i; difficulty = s3 }
+let make name hint i diff = { name = name; hint = hint; items = i; difficulty = diff }
 let diff c = c.difficulty
 let name c = c.name
 let items c = c.items
