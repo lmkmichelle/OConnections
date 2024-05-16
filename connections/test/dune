@@ -1,3 +1,5 @@
 (test
  (name test_connections)
+ (deps
+  (glob_files files/*))
  (libraries ounit2 connections))

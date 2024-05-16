@@ -1,9 +1,25 @@
+open Word
+
 type t = {
   name : string;
   hint : string;
   items : Word.t array;
   difficulty : string;
 }
+
+let print_category ctg =
+  Printf.printf "{\n";
+  Printf.printf " name: \"%s\";\n" ctg.name;
+  Printf.printf " hint: \"%s\";\n" ctg.hint;
+  Printf.printf " items: [|";
+  Array.iteri
+    (fun i word ->
+      if i > 0 then Printf.printf "; ";
+      print_word word)
+    ctg.items;
+  Printf.printf "|];\n";
+  Printf.printf " difficulty : \"%s\;\n" ctg.difficulty;
+  Printf.printf "}\n"
 
 let contains e c =
   let x = ref false in

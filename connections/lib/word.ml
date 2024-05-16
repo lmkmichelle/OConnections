@@ -13,3 +13,6 @@ let test_word = {
   category = "greeting" }
 let test_word2 = { word = ""; category = "" }
 let test_word3 = { word = "%^z+3"; category = "/s@_{}[]" }
+
+let print_word wrd =
+  Printf.printf "{word : \"%s\"; category : \"%s\"}" wrd.word wrd.category

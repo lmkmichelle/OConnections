@@ -9,10 +9,10 @@ let purple = make_category_list "purple.txt" "purple"
 
 let random_num_list =
   [|
-    Random.int (List.length yellow);
-    Random.int (List.length yellow);
-    Random.int (List.length yellow);
-    Random.int (List.length yellow);
+    Random.int (List.length blue);
+    Random.int (List.length blue);
+    Random.int (List.length blue);
+    Random.int (List.length blue);
   |]
 
 let guessed_words_init = Array.make 16 (Word.make "empty" "empty")
@@ -206,7 +206,7 @@ let rec contradiction_eliminator (l : Category.t list) =
      done);
   !final_list
 
-exception OutsideArchiveBounds
+exception OutsideArchiveBounds of { attempted : int }
 
 let const custom random_num_list =
   if custom = "yellow" then
@@ -247,7 +247,8 @@ let const custom random_num_list =
       ]
   else if String.contains custom 'A' then
     let day = int_of_string (String.sub custom 8 2) in
-    if day < 00 || day > 39 then raise OutsideArchiveBounds
+    if day < 00 || day > 39 then
+      raise (OutsideArchiveBounds { attempted = day })
     else
       [
         List.nth yellow day;

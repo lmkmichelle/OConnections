@@ -9,9 +9,10 @@ val random_num_list : int array
 val const : string -> int array -> Category.t list
 (** [const custom random_num_list] creates a list of four categories, all from
     the corresponding color if custom is ["yellow", "green", "blue", "purple"]
-    or one from each from a random game if custom is ["random"] or just all four
-    from a random game if custom is anything else. [random_num_list] is the
-    value [random_num_list] from game.mli *)
+    or one from each from a random game if custom is ["random"] or game number
+    ## if custom is ["Archive~##"] or just all four from a random game if custom
+    is anything else. [random_num_list] is the value [random_num_list] from
+    game.mli *)
 
 val shuffle : 'a array -> unit
 (** [shuffle a] shuffles array [a]'s ordering such that the elements are put
@@ -35,18 +36,20 @@ val check_win : Word.t array -> bool
 
 val color_match : string -> ANSITerminal.style
 (** [color_match i] takes string [i], which represents the difficulty of a
-   category and returns the corresponding ANSITerminal.style for it to be
-   printed in the right color *)
+    category and returns the corresponding ANSITerminal.style for it to be
+    printed in the right color *)
 
 val category_find : Word.t -> Category.t list -> Category.t
 (** [category_find e l] searches through a list [l] of categories to find which
-   one contains element [e] *)
+    one contains element [e] *)
 
 val contradiction_eliminator : Category.t list -> Category.t list
 (** [contradiction_eliminator l] searches through list [l], performing numerous
-   checks on the category names and items in it, changing them randomly until
-   there is no repetition of labels. *)
-exception OutsideArchiveBounds 
+    checks on the category names and items in it, changing them randomly until
+    there is no repetition of labels. *)
+
+exception OutsideArchiveBounds of { attempted : int }
 (**exception OutsideArchiveBounds is raised if a day is provided for the archive
-    that is not included in the current connections files. This includes negative 
-numbers or numbers greater than 39*)
+   that is not included in the current connections files. This includes negative
+   numbers or numbers greater than 39. Value attempted is equal to the attempted
+   day that was used*)

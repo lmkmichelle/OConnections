@@ -30,6 +30,9 @@ val name : t -> string
 val items : t -> Word.t array
 (** [items c] returns an array containing all of the Words in category [c] *)
 
+val print_category : t -> unit
+(**prints categories to be used for debugging purposes*)
+
 val test_category: t
 val test_category2: t
 val test_category3: t

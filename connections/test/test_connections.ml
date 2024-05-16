@@ -1,6 +1,160 @@
 open OUnit2
 open Connections.Word
 open Connections.Category
+open Connections.Game
+
+(*return the [n]th elements of [lst]*)
+let rec test_helper n lst =
+  match lst with
+  | [] -> failwith "empty list"
+  | h :: t ->
+      if n = 0 then (
+        print_category h;
+        h)
+      else test_helper (n - 1) t
+
+let expected_blue =
+  [
+    {
+      name = "Keyboard Keys";
+      hint = "Input Commands";
+      items =
+        [|
+          Connections.Word.make "Option" "Keyboard Keys";
+          Connections.Word.make "Return" "Keyboard Keys";
+          Connections.Word.make "Shift" "Keyboard Keys";
+          Connections.Word.make "Tab" "Keyboard Keys";
+        |];
+      difficulty = "blue";
+    };
+    {
+      name = "Magazines";
+      hint = "You can find them in a waiting room.";
+      items =
+        [|
+          Connections.Word.make "Essence" "Magazines";
+          Connections.Word.make "People" "Magazines";
+          Connections.Word.make "Time" "Magazines";
+          Connections.Word.make "Us" "Magazines";
+        |];
+      difficulty = "blue";
+    };
+  ]
+
+let expected_green =
+  [
+    {
+      name = "NBA Teams";
+      hint = "Ball is life!";
+      items =
+        [|
+          Connections.Word.make "Bucks" "NBA Teams";
+          Connections.Word.make "Heat" "NBA Teams";
+          Connections.Word.make "Jazz" "NBA Teams";
+          Connections.Word.make "Nets" "NBA Teams";
+        |];
+      difficulty = "green";
+    };
+    {
+      name = "Units of Length";
+      hint = "Europeans would instead use meter";
+      items =
+        [|
+          Connections.Word.make "Foot" "Units of Length";
+          Connections.Word.make "League" "Units of Length";
+          Connections.Word.make "Mile" "Units of Length";
+          Connections.Word.make "Yard" "Units of Length";
+        |];
+      difficulty = "green";
+    };
+  ]
+
+let expected_purple =
+  [
+    {
+      name = "Palindromes";
+      hint = "abcdcba";
+      items =
+        [|
+          Connections.Word.make "Kayak" "Palindromes";
+          Connections.Word.make "Level" "Palindromes";
+          Connections.Word.make "Mom" "Palindromes";
+          Connections.Word.make "Racecar" "Palindromes";
+        |];
+      difficulty = "purple";
+    };
+    {
+      name = "Letter Homophones";
+      hint = "I see a bee";
+      items =
+        [|
+          Connections.Word.make "Are" "Letter Homophones";
+          Connections.Word.make "Queue" "Letter Homophones";
+          Connections.Word.make "Sea" "Letter Homophones";
+          Connections.Word.make "Why" "Letter Homophones";
+        |];
+      difficulty = "purple";
+    };
+  ]
+
+let expected_yellow =
+  [
+    {
+      name = "Wet Weather";
+      hint = "Don't forget to bring your umbrella!";
+      items =
+        [|
+          Connections.Word.make " Hail" "Wet Weather";
+          Connections.Word.make " Rain" "Wet Weather";
+          Connections.Word.make " Sleet" "Wet Weather";
+          Connections.Word.make " Snow" "Wet Weather";
+        |];
+      difficulty = "yellow";
+    };
+    {
+      name = "Footwear";
+      hint = "Clothes for feet";
+      items =
+        [|
+          Connections.Word.make "Boot" "Footwear";
+          Connections.Word.make "Loafer" "Footwear";
+          Connections.Word.make "Pump" "Footwear";
+          Connections.Word.make "Sneaker" "Footwear";
+        |];
+      difficulty = "yellow";
+    };
+  ]
+
+let init_lst =
+  [|
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+    Connections.Word.make "empty" "empty";
+  |]
+
+let const_oab_test attempted =
+  let ints = Array.make 4 0 in
+  assert_equal
+    (Some (Connections.Game.OutsideArchiveBounds { attempted }))
+    (try
+       let c =
+         Connections.Game.const ("Archive~" ^ string_of_int attempted) ints
+       in
+       None
+     with e -> Some e)
 
 let tests =
   "tests"
@@ -77,7 +231,6 @@ let tests =
              are multiple items**)
            assert_equal (items test_category4)
              [| test_word; test_word2; test_word3 |] );
-          
        ]
 
 let () = run_test_tt_main tests
