@@ -6,6 +6,23 @@ open Game
 let () = Random.self_init ()
 let number_of_lives = ref 4
 
+(* Helper function that returns an int array contianing four random, unique integers
+   from 0 to 39, inclusive. *)
+let unique_random_array () =
+  let arr = Array.make 4 (-1) in  
+  (* Initialize an array with 4 elements, filled with -1 *)
+  let rec fill_unique idx =
+    if idx < 4 then
+      let rec generate () =
+        let candidate = Random.int 40 in
+        if Array.mem candidate arr then generate () else candidate
+      in
+      arr.(idx) <- generate ();
+      fill_unique (idx + 1)
+  in
+  fill_unique 0;
+  arr
+
 (* Helper function that converts a string of numbers (ex. "10 1 4 13") into an
    int list (ex. [10; 1; 4; 13])*)
 let rec convert_to_int_list acc = function
@@ -181,11 +198,11 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "yes" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_words_array = Array.make 16 (Word.make "" "") in
         (* Store all elements from all four categories into one array *)
-        for i = 0 to List.length (Game.const "yellow" num_list) - 1 do
+        for i = 0 to List.length (Game.const "yellow" num_list ) - 1 do
           for
             j = 0
             to Array.length (List.nth (Game.const "yellow" num_list) i).items
@@ -209,7 +226,7 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "yes" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_words_array =
           Array.make
@@ -235,7 +252,7 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "yes" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_words_array =
           Array.make
@@ -266,7 +283,7 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "yes" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_words_array =
           Array.make
@@ -298,7 +315,7 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "yes" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_const = Game.const "normal" num_list in
         let new_words_array =
@@ -322,7 +339,7 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "yes" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_const = Game.const "random" num_list in
         let new_words_array =
@@ -350,7 +367,7 @@ let rec main_loop const words_array guessed_words hint mode =
       match read_line () with
       | "yes" ->
           let num_list =
-            [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+            unique_random_array ()
           in
           let new_const = Game.const "Archive~01" num_list in
           let new_words_array =
@@ -375,7 +392,7 @@ let rec main_loop const words_array guessed_words hint mode =
       match read_line () with
       | "yes" ->
           let num_list =
-            [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+            unique_random_array ()
           in
           let new_const = Game.const "Archive~38" num_list in
           let new_words_array =
@@ -402,7 +419,7 @@ let rec main_loop const words_array guessed_words hint mode =
     match read_line () with
     | "y" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_const =
           if day < 11 then
@@ -424,7 +441,7 @@ let rec main_loop const words_array guessed_words hint mode =
           ("Archive~" ^ string_of_int (day - 1))
     | "t" ->
         let num_list =
-          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          unique_random_array ()
         in
         let new_const =
           if day < 9 then

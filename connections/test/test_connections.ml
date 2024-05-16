@@ -167,7 +167,7 @@ let const_oab_test attempted =
   assert_equal
     (Some (Connections.Game.OutsideArchiveBounds { attempted }))
     (try
-       let c =
+       let _ =
          Connections.Game.const ("Archive~" ^ string_of_int attempted) ints
        in
        None
