@@ -21,7 +21,7 @@ Royal Titles,Luxurious dinner parties & scandals,Baron,Earl,King,Prince
 Web Browsers,These can answer almost all questions.,Chrome,Edge,Opera,Safari
 Animal Noses,Sniff sniff!,Beak,Muzzle,Snout,Trunk
 Dance Fads,Rhytm and Trends!!,Dougie,Macarena,Mashed Potato,Twist
-Video Game Consoles,Open up a beer and you say, "Get over here and play a ______",Dreamcast,Genesis,Switch,Wii
+Video Game Consoles,Open up a beer and you say "Get over here and play a ______",Dreamcast,Genesis,Switch,Wii
 Mild Oaths,Good Grief!,Darn,Fudge,Heck,Shoot
 Synonyms for Imitate,Not the original,Copy,Echo,Mimic,Parrot
 Organs,They keep you alive.,Heart,Kidney,Liver,Lung

@@ -47,7 +47,10 @@ let check_win guessed_words =
   let check_empty =
     List.filter (fun word -> word.word = "empty") guessed_list
   in
-  if List.length check_empty = 0 then true else false
+  if List.length check_empty = 0 then 
+    true 
+  else 
+    false
 
 let color_match i =
   if i = "yellow" then ANSITerminal.yellow
@@ -234,7 +237,7 @@ let const custom random_num_list =
       List.nth purple random_num_list.(2);
       List.nth purple random_num_list.(3);
     ]
-  else if custom = "random" then
+  else if custom = "normal" then
     contradiction_eliminator
       [
         List.nth yellow random_num_list.(0);
