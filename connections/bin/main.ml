@@ -215,8 +215,9 @@ let rec main_loop const words_array guessed_words hint mode =
         Game.shuffle new_words_array;
         main_loop
           (Game.const "yellow" num_list)
-          new_words_array 
-          (Array.make 16 (Word.make "empty" "empty")) hint mode
+          new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -241,8 +242,9 @@ let rec main_loop const words_array guessed_words hint mode =
           done
         done;
         Game.shuffle new_words_array;
-        main_loop new_const new_words_array 
-        (Array.make 16 (Word.make "empty" "empty")) hint mode
+        main_loop new_const new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -272,8 +274,9 @@ let rec main_loop const words_array guessed_words hint mode =
         Game.shuffle new_words_array;
         main_loop
           (Game.const "blue" num_list)
-          new_words_array 
-          (Array.make 16 (Word.make "empty" "empty")) hint mode
+          new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -304,8 +307,9 @@ let rec main_loop const words_array guessed_words hint mode =
         Game.shuffle new_words_array;
         main_loop
           (Game.const "purple" num_list)
-          new_words_array 
-          (Array.make 16 (Word.make "empty" "empty")) hint mode
+          new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -328,8 +332,9 @@ let rec main_loop const words_array guessed_words hint mode =
           done
         done;
         Game.shuffle new_words_array;
-        main_loop new_const new_words_array 
-        (Array.make 16 (Word.make "empty" "empty")) hint "normal"
+        main_loop new_const new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint "normal"
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -352,8 +357,9 @@ let rec main_loop const words_array guessed_words hint mode =
           done
         done;
         Game.shuffle new_words_array;
-        main_loop new_const new_words_array 
-        (Array.make 16 (Word.make "empty" "empty")) hint "random"
+        main_loop new_const new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint "random"
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -380,9 +386,9 @@ let rec main_loop const words_array guessed_words hint mode =
             done
           done;
           Game.shuffle new_words_array;
-          main_loop new_const new_words_array 
-          (Array.make 16 (Word.make "empty" "empty")) hint
-            "Archive~01"
+          main_loop new_const new_words_array
+            (Array.make 16 (Word.make "empty" "empty"))
+            hint "Archive~01"
       | "no" -> print_endline "Thanks for playing!"
       | _ ->
           print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -405,9 +411,9 @@ let rec main_loop const words_array guessed_words hint mode =
             done
           done;
           Game.shuffle new_words_array;
-          main_loop new_const new_words_array 
-          (Array.make 16 (Word.make "empty" "empty")) hint
-            "Archive~38"
+          main_loop new_const new_words_array
+            (Array.make 16 (Word.make "empty" "empty"))
+            hint "Archive~38"
       | "no" -> print_endline "Thanks for playing!"
       | _ ->
           print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -436,9 +442,11 @@ let rec main_loop const words_array guessed_words hint mode =
           done
         done;
         Game.shuffle new_words_array;
-        main_loop new_const new_words_array 
-        (Array.make 16 (Word.make "empty" "empty")) hint
-          ("Archive~" ^ string_of_int (day - 1))
+        main_loop new_const new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint
+          (if day < 11 then "Archive~" ^ "0" ^ string_of_int (day - 1)
+           else "Archive~" ^ string_of_int (day - 1))
     | "t" ->
         let num_list =
           unique_random_array ()
@@ -458,14 +466,17 @@ let rec main_loop const words_array guessed_words hint mode =
           done
         done;
         Game.shuffle new_words_array;
-        main_loop new_const new_words_array 
-        (Array.make 16 (Word.make "empty" "empty")) hint
-          ("Archive~" ^ string_of_int (day + 1))
+        main_loop new_const new_words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint
+          (if day < 9 then "Archive~" ^ "0" ^ string_of_int (day + 1)
+           else "Archive~" ^ string_of_int (day + 1))
     | "n" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
-        main_loop const words_array 
-        (Array.make 16 (Word.make "empty" "empty")) hint mode
+        main_loop const words_array
+          (Array.make 16 (Word.make "empty" "empty"))
+          hint mode
 
 let _ =
   (* dune exec bin/main.exe <hint_mode> <custom_difficulty> *)
