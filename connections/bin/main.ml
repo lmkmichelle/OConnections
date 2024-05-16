@@ -16,7 +16,6 @@ let rec convert_to_int_list acc = function
       convert_to_int_list (num :: acc) tl
 
 let rec game num words_array (guessed_words : Word.t array) const hint_mode =
-  (* let rec game num words_array (guessed_words : Word.t array) = *)
   (* Prints out the words in a stylized 4x4 grid.*)
   let guessed =
     Array.find_index
