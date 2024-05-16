@@ -17,13 +17,15 @@ let rec convert_to_int_list acc = function
 let rec game num words_array (guessed_words : Word.t array) const hint_mode =
   (* Prints out the words in a stylized 4x4 grid.*)
   let guessed =
-    Array.find_index
-      (function
-        | x -> x = Word.make "empty" "empty")
-      guessed_words
+    ref
+      (Array.find_index
+         (function
+           | x -> x = Word.make "empty" "empty")
+         guessed_words)
     (* in let () = print_endline (string_of_int (Option.get guessed)) in *)
   in
-  for i = 0 to Option.get guessed - 1 do
+  if guessed = ref None then guessed := Some 0;
+  for i = 0 to Option.get !guessed - 1 do
     let () =
       if i mod 4 = 0 then
         let () = print_endline "" in
@@ -42,7 +44,7 @@ let rec game num words_array (guessed_words : Word.t array) const hint_mode =
         [ color_match (diff (category_find guessed_words.(i) const)) ]
         "[%i: %s]" (i + 1) words_array.(i).word
   done;
-  for words = Option.get guessed to Array.length words_array - 1 do
+  for words = Option.get !guessed to Array.length words_array - 1 do
     if words mod 4 = 0 && words <> 0 then
       let () = print_newline () in
       ANSITerminal.printf [ ANSITerminal.black ] "[%i: %s]" (words + 1)
@@ -90,6 +92,18 @@ let rec game num words_array (guessed_words : Word.t array) const hint_mode =
         let () =
           print_endline
             "You can not guess the same word twice. Please try again."
+        in
+        game num words_array guessed_words const hint_mode
+      else if
+        Array.mem word1 guessed_words
+        || Array.mem word2 guessed_words
+        || Array.mem word3 guessed_words
+        || Array.mem word4 guessed_words
+      then
+        let () =
+          print_endline
+            "You cannot guess words whose category has been \n\
+            \        solved. Please try again."
         in
         game num words_array guessed_words const hint_mode
       else if
@@ -162,7 +176,6 @@ let rec game num words_array (guessed_words : Word.t array) const hint_mode =
 
 let rec main_loop const words_array guessed_words hint mode =
   game (Array.length words_array) words_array guessed_words const hint;
-
   if mode = "yellow" then (
     let () = print_endline "Do you want to play again? (yes/no)" in
     match read_line () with
@@ -170,11 +183,7 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
-        let new_words_array =
-          Array.make
-            (List.length (Game.const "yellow" num_list) * 4)
-            (Word.make "" "")
-        in
+        let new_words_array = Array.make 16 (Word.make "" "") in
         (* Store all elements from all four categories into one array *)
         for i = 0 to List.length (Game.const "yellow" num_list) - 1 do
           for
@@ -186,6 +195,7 @@ let rec main_loop const words_array guessed_words hint mode =
               (List.nth (Game.const "yellow" num_list) i).items.(j)
           done
         done;
+        Game.shuffle new_words_array;
         main_loop
           (Game.const "yellow" num_list)
           new_words_array guessed_words_init hint mode
@@ -212,6 +222,7 @@ let rec main_loop const words_array guessed_words hint mode =
             new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
           done
         done;
+        Game.shuffle new_words_array;
         main_loop new_const new_words_array guessed_words_init hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
@@ -239,6 +250,7 @@ let rec main_loop const words_array guessed_words hint mode =
               (List.nth (Game.const "blue" num_list) i).items.(j)
           done
         done;
+        Game.shuffle new_words_array;
         main_loop
           (Game.const "blue" num_list)
           new_words_array guessed_words_init hint mode
@@ -269,6 +281,7 @@ let rec main_loop const words_array guessed_words hint mode =
               (List.nth (Game.const "purple" num_list) i).items.(j)
           done
         done;
+        Game.shuffle new_words_array;
         main_loop
           (Game.const "purple" num_list)
           new_words_array guessed_words_init hint mode
@@ -283,25 +296,41 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
+        let new_const = Game.const "normal" num_list in
         let new_words_array =
-          Array.make
-            (List.length (Game.const "normal" num_list) * 4)
-            (Word.make "" "")
+          Array.make (List.length new_const * 4) (Word.make "" "")
         in
         (* Store all elements from all four categories into one array *)
-        for i = 0 to List.length (Game.const "normal" num_list) - 1 do
-          for
-            j = 0
-            to Array.length (List.nth (Game.const "normal" num_list) i).items
-               - 1
-          do
-            new_words_array.((4 * i) + j) <-
-              (List.nth (Game.const "normal" num_list) i).items.(j)
+        for i = 0 to List.length new_const - 1 do
+          for j = 0 to Array.length (List.nth new_const i).items - 1 do
+            new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
           done
         done;
-        main_loop
-          (Game.const "normal" num_list)
-          new_words_array guessed_words_init hint mode
+        Game.shuffle new_words_array;
+        main_loop new_const new_words_array guessed_words_init hint "normal"
+    | "no" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array guessed_words hint mode)
+  else if mode = "random" then (
+    let () = print_endline "Do you want to play again? (yes/no)" in
+    match read_line () with
+    | "yes" ->
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        let new_const = Game.const "random" num_list in
+        let new_words_array =
+          Array.make (List.length new_const * 4) (Word.make "" "")
+        in
+        (* Store all elements from all four categories into one array *)
+        for i = 0 to List.length new_const - 1 do
+          for j = 0 to Array.length (List.nth new_const i).items - 1 do
+            new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
+          done
+        done;
+        Game.shuffle new_words_array;
+        main_loop new_const new_words_array guessed_words_init hint "random"
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -314,7 +343,22 @@ let rec main_loop const words_array guessed_words hint mode =
       in
       match read_line () with
       | "yes" ->
-          main_loop const words_array guessed_words_init hint "Archive~01"
+          let num_list =
+            [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          in
+          let new_const = Game.const "Archive~01" num_list in
+          let new_words_array =
+            Array.make (List.length new_const * 4) (Word.make "" "")
+          in
+          (* Store all elements from all four categories into one array *)
+          for i = 0 to List.length new_const - 1 do
+            for j = 0 to Array.length (List.nth new_const i).items - 1 do
+              new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
+            done
+          done;
+          Game.shuffle new_words_array;
+          main_loop new_const new_words_array guessed_words_init hint
+            "Archive~01"
       | "no" -> print_endline "Thanks for playing!"
       | _ ->
           print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -323,7 +367,22 @@ let rec main_loop const words_array guessed_words hint mode =
       let () = print_endline "Do you want to play yesterday's game? (yes/no)" in
       match read_line () with
       | "yes" ->
-          main_loop const words_array guessed_words_init hint "Archive~38"
+          let num_list =
+            [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+          in
+          let new_const = Game.const "Archive~38" num_list in
+          let new_words_array =
+            Array.make (List.length new_const * 4) (Word.make "" "")
+          in
+          (* Store all elements from all four categories into one array *)
+          for i = 0 to List.length new_const - 1 do
+            for j = 0 to Array.length (List.nth new_const i).items - 1 do
+              new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
+            done
+          done;
+          Game.shuffle new_words_array;
+          main_loop new_const new_words_array guessed_words_init hint
+            "Archive~38"
       | "no" -> print_endline "Thanks for playing!"
       | _ ->
           print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -334,10 +393,46 @@ let rec main_loop const words_array guessed_words hint mode =
          (y/t/n)";
     match read_line () with
     | "y" ->
-        main_loop const words_array guessed_words_init hint
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        let new_const =
+          if day < 11 then
+            Game.const ("Archive~" ^ "0" ^ string_of_int (day + 1)) num_list
+          else Game.const ("Archive~" ^ string_of_int (day - 1)) num_list
+        in
+        let new_words_array =
+          Array.make (List.length new_const * 4) (Word.make "" "")
+        in
+        (* Store all elements from all four categories into one array *)
+        for i = 0 to List.length new_const - 1 do
+          for j = 0 to Array.length (List.nth new_const i).items - 1 do
+            new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
+          done
+        done;
+        Game.shuffle new_words_array;
+        main_loop new_const new_words_array guessed_words_init hint
           ("Archive~" ^ string_of_int (day - 1))
     | "t" ->
-        main_loop const words_array guessed_words_init hint
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        let new_const =
+          if day < 9 then
+            Game.const ("Archive~" ^ "0" ^ string_of_int (day + 1)) num_list
+          else Game.const ("Archive~" ^ string_of_int (day + 1)) num_list
+        in
+        let new_words_array =
+          Array.make (List.length new_const * 4) (Word.make "" "")
+        in
+        (* Store all elements from all four categories into one array *)
+        for i = 0 to List.length new_const - 1 do
+          for j = 0 to Array.length (List.nth new_const i).items - 1 do
+            new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
+          done
+        done;
+        Game.shuffle new_words_array;
+        main_loop new_const new_words_array guessed_words_init hint
           ("Archive~" ^ string_of_int (day + 1))
     | "n" -> print_endline "Thanks for playing!"
     | _ ->
