@@ -13,6 +13,13 @@ let rec test_helper n lst =
         h)
       else test_helper (n - 1) t
 
+let array_compare ar1 ar2 =
+  let sar1 = Array.copy ar1 in
+  let sar2 = Array.copy ar2 in
+  Array.sort compare sar1;
+  Array.sort compare sar2;
+  Array.length sar1 = Array.length sar2 && Array.for_all2 ( = ) sar1 sar2
+
 let expected_blue =
   [
     {
@@ -334,6 +341,13 @@ let tests =
            assert_equal
              (array_eliminate words_array test_array)
              [| Connections.Word.make "bye" "bye" |] );
+         ( "word_shuffle" >:: fun _ ->
+           let a = [| 1; 2; 3; 4 |] in
+           let copy_a = Array.copy a in
+           let copy_b = Array.copy a in
+           shuffle copy_a;
+           shuffle copy_b;
+           assert_bool "Failed11" (array_compare copy_a copy_b) );
          ( "update_words_array" >:: fun _ ->
            let words_array = [| Connections.Word.make "hello" "hello" |] in
            let empty_array = [| Connections.Word.make "empty" "empty" |] in
