@@ -12,3 +12,6 @@ val make : string -> string -> t
 val test_word : t
 val test_word2 : t
 val test_word3 : t
+
+val print_word : t -> unit
+(**prints words to be used for debugging purposes*)

@@ -1,0 +1,40 @@
+Keyboard Keys,Input Commands,Option,Return,Shift,Tab
+Magazines,You can find them in a waiting room.,Essence,People,Time,Us
+Dog Breeds (Informally),Woof woof!,Lab,Peke,Pit,Pom
+Cleaning Verbs,If you have a dirty room you should __,Dust,Mop,Sweep,Vacuum
+Synonyms For Sad,Not happy...,Blue,Down,Glum,Low
+Rappers,Think of Eminem!!,Common,Future,Ice Cube,Q-Tip
+Slang for Toilet,Where people scroll aimlessly on TikTok for hours!,Can,Head,John,Throne,
+Things that are Red,___ Hot Chili Peppers,Cherry,Fire Truck,Ruby,Stop Sign
+Vegetables,Mom: you are not leaving the table until you finish your ___,Beet,Carrot,Corn,Onion
+Birds,It's not a plane - it's not Superman - so it must be a ___,Crane,Jay,Swallow,Turkey
+Things With Wings,Red Bull gives you ___,Airplane,Angel,Bird,Pegasus
+Slow Animals,They would win in a race against hares!,Loris,Sloth,Snail,Tortoise
+Silent "G",It's all about pronunciation!,Gnat,Gnaw,Gnocchi,Gnome
+Hondas,You would find these in Radiator Springs!,Accord,Civic,Passport,Pilot
+Fishing Gear,People who live near a lake are likely to own these.,Lure,Reel,Rod,Tackle
+Shades of Green,Academy award winning movie : ____ Book,Emerald,Forest,Kelly,Olive
+Detergents,They remove stains!,All,Era,Gain,Tide
+Title TV Doctors,An apple a day keeps the ____ away.,Grey,House,Howser,Quinn
+Kinds of Meat,The dream lineup of carnivores!,Beef,Pork,Poultry,Venison
+Universities,Cornell>>>,Brown,Duke,Howard,Rice
+"Little Women" Sisters,Louisa May Alcott,Amy,Beth,Jo,Meg
+Traffic Signs,Red Yellow and Green!,Detour,Slow,Stop,Yield
+Magazines,A type of periodical publication.,Fortune,Rolling Stone,Vogue,Wired
+Ear Parts,I'm all [insert body part]s!,Anvil,Cochlea,Hammer,Stirrup
+Animals with Tusks,Animals know for their large teeth.,Elephant,Hippo,Narwhal,Warthog
+Toms,Uncle ___'s Cabin,Cruise,Holland,Petty,Waits
+Parts of a Book,Physical parts that organize a printed publication.,Cover,Jacket,Page,Spine
+Flightless Birds,These look like they can fly - but they can't!,Emu,Kiwi,Ostrich,Penguin
+Fish,One of Tim Burton's best movies is called "Big ____".,Skate,Sole,Tang,Tetra
+Joints,Meeting point of multiple bones.,Hip,Knee,Shoulder,Wrist
+Words with "i",Think of the letter that gets crushed by Pixar's Lamp.,Mac,Pad,Phone,Pod
+Fictional Spies,007,Bond,Hunt,Ryan,Smart
+Cuts of Beef,Meat from cattle,Flank,Loin,Round,Shank
+Rock Paper Scissors,You can expand this game by adding a Lizard and Spock.,Rock,Paper,Scissors,Shoot
+Lucky Charms Marshmallows,Lucky the Leprechaun,Clover,Horseshoe,Moon,Rainbow
+Slang for Money,$$,Cheddar,Dough,Paper,Stacks
+Synonyms for Sell,A type of business transaction,Hawk,Move,Peddle,Vend
+Bagel Flavors,___ and cream cheese,Everything,Onion,Plain,Poppy
+Units of Measure,Used for quantifying,Hertz,Mole,Newton,Second
+Sunglasses,Types of eyewear,Aviator,Cat Eye,Wayfarer,Wraparound

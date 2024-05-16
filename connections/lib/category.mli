@@ -19,6 +19,9 @@ val name : t -> string
 (**returns the name of a value of type t*)
 val items : t -> Word.t array
 
+val print_category : t -> unit
+(**prints categories to be used for debugging purposes*)
+
 val test_category: t
 val test_category2: t
 val test_category3: t

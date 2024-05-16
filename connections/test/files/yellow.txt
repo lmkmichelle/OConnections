@@ -1,4 +1,4 @@
-Wet Weather,Don't forget to bring your umbrella!,Hail,Rain,Sleet,Snow
+Wet Weather,Don't forget to bring your umbrella!,Hail, Rain, Sleet, Snow
 Footwear,Clothes for feet,Boot,Loafer,Pump,Sneaker
 Facial Features,parts of a portrait,Cheek,Eye,Mouth,Nose
 Sneaker Brands,Asics - Fila - New Balance,Adidas,Nike,Puma,Reebok

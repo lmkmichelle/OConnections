@@ -9,10 +9,10 @@ let purple = make_category_list "purple.txt" "purple"
 
 let random_num_list =
   [|
-    Random.int (List.length yellow);
-    Random.int (List.length yellow);
-    Random.int (List.length yellow);
-    Random.int (List.length yellow);
+    Random.int (List.length blue);
+    Random.int (List.length blue);
+    Random.int (List.length blue);
+    Random.int (List.length blue);
   |]
 
 let guessed_words_init = Array.make 16 (Word.make "empty" "empty")
