@@ -47,16 +47,14 @@ let check_win guessed_words =
   let check_empty =
     List.filter (fun word -> word.word = "empty") guessed_list
   in
-  if List.length check_empty = 0 then 
-    true 
-  else 
-    false
+  if List.length check_empty = 0 then true else false
 
 let color_match i =
   if i = "yellow" then ANSITerminal.yellow
   else if i = "green" then ANSITerminal.green
   else if i = "blue" then ANSITerminal.blue
-  else ANSITerminal.magenta
+  else if i = "purple" then ANSITerminal.magenta
+  else ANSITerminal.black
 
 let category_find e (l : Category.t list) =
   let x =

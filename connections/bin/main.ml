@@ -72,91 +72,93 @@ let rec game num words_array (guessed_words : Word.t array) const hint_mode =
       convert_to_int_list [] split_input
     in
 
-  (* Compares the categories of the four word guesses. *)
-  if List.length numbers = 4 then
-    let word1 = words_array.(List.nth numbers 0 - 1) in
-    let word2 = words_array.(List.nth numbers 1 - 1) in
-    let word3 = words_array.(List.nth numbers 2 - 1) in
-    let word4 = words_array.(List.nth numbers 3 - 1) in
-    let word1_category = word1.category in
-    let word2_category = word2.category in
-    let word3_category = word3.category in
-    let word4_category = word4.category in
-    if
-      word1.word = word2.word || word1.word = word3.word
-      || word1.word = word4.word || word2.word = word3.word
-      || word2.word = word4.word || word3.word = word4.word
-    then
-      let () =
-        print_endline "You can not guess the same word twice. Please try again."
-      in
-      game num words_array guessed_words const hint_mode
-    else if
-      word1_category = word2_category
-      && word1_category = word3_category
-      && word1_category = word4_category
-    then
-      let () = print_endline "Correct!" in
-      let () =
-      print_endline
-        ("Number of tries remaining: " ^ string_of_int !number_of_lives) in
-      
-      (* Update guessed words *)
-      let () = guessed_words.(16 - num) <- word1 in
-      let () = guessed_words.(17 - num) <- word2 in
-      let () = guessed_words.(18 - num) <- word3 in
-      let () = guessed_words.(19 - num) <- word4 in
-      (* Check if player has won *)
-      if check_win guessed_words then 
-        print_endline "You win!"
-      else
-      game (num - 4)
-        (update_words_array words_array guessed_words)
-        guessed_words const hint_mode
-    else if
-      (word1_category = word2_category && word1_category = word3_category)
-      || (word1_category = word2_category && word1_category = word4_category)
-      || (word1_category = word3_category && word1_category = word4_category)
-      || (word2_category = word3_category && word2_category = word4_category)
-    then
-      if !number_of_lives = 0 then
+    (* Compares the categories of the four word guesses. *)
+    if List.length numbers = 4 then
+      let word1 = words_array.(List.nth numbers 0 - 1) in
+      let word2 = words_array.(List.nth numbers 1 - 1) in
+      let word3 = words_array.(List.nth numbers 2 - 1) in
+      let word4 = words_array.(List.nth numbers 3 - 1) in
+      let word1_category = word1.category in
+      let word2_category = word2.category in
+      let word3_category = word3.category in
+      let word4_category = word4.category in
+      if
+        word1.word = word2.word || word1.word = word3.word
+        || word1.word = word4.word || word2.word = word3.word
+        || word2.word = word4.word || word3.word = word4.word
+      then
+        let () =
+          print_endline
+            "You can not guess the same word twice. Please try again."
+        in
+        game num words_array guessed_words const hint_mode
+      else if
+        word1_category = word2_category
+        && word1_category = word3_category
+        && word1_category = word4_category
+      then
+        let () = print_endline "Correct!" in
+        let () =
+          print_endline
+            ("Number of tries remaining: " ^ string_of_int !number_of_lives)
+        in
+
+        (* Update guessed words *)
+        let () = guessed_words.(16 - num) <- word1 in
+        let () = guessed_words.(17 - num) <- word2 in
+        let () = guessed_words.(18 - num) <- word3 in
+        let () = guessed_words.(19 - num) <- word4 in
+        (* Check if player has won *)
+        if check_win guessed_words then print_endline "You win!"
+        else
+          game (num - 4)
+            (update_words_array words_array guessed_words)
+            guessed_words const hint_mode
+      else if
+        (word1_category = word2_category && word1_category = word3_category)
+        || (word1_category = word2_category && word1_category = word4_category)
+        || (word1_category = word3_category && word1_category = word4_category)
+        || (word2_category = word3_category && word2_category = word4_category)
+      then
+        if !number_of_lives = 0 then
+          print_endline "Out of tries. Better luck next time!"
+        else
+          let () = decr number_of_lives in
+          let three_category =
+            if word1_category = word2_category then word1_category
+            else if word1_category = word3_category then word1_category
+            else if word1_category = word4_category then word1_category
+            else word2_category
+          in
+          let category_tried =
+            List.find (fun x -> x.name = three_category) const
+          in
+          let hint = category_tried.hint in
+          if hint_mode = "yes" then
+            let () = print_endline ("One Away! Hint: " ^ hint) in
+            let () =
+              print_endline
+                ("Number of tries remaining: " ^ string_of_int !number_of_lives)
+            in
+            game num words_array guessed_words const hint_mode
+          else
+            let () = print_endline "One Away!" in
+            let () =
+              print_endline
+                ("Number of tries remaining: " ^ string_of_int !number_of_lives)
+            in
+            game num words_array guessed_words const hint_mode
+      else if !number_of_lives = 0 then
         print_endline "Out of tries. Better luck next time!"
       else
         let () = decr number_of_lives in
-        let three_category =
-          if word1_category = word2_category then word1_category
-          else if word1_category = word3_category then word1_category
-          else if word1_category = word4_category then word1_category
-          else word2_category
+        let () = print_endline "Nope!" in
+        let () =
+          print_endline
+            ("Number of tries remaining: " ^ string_of_int !number_of_lives)
         in
-        let category_tried =
-          List.find (fun x -> x.name = three_category) const
-        in
-        let hint = category_tried.hint in
-        if hint_mode = "yes" then
-          let () = print_endline ("One Away! Hint: " ^ hint) in
-          let () =
-            print_endline
-              ("Number of tries remaining: " ^ string_of_int !number_of_lives) in
-          game num words_array guessed_words const hint_mode
-        else
-          let () = print_endline "One Away!" in
-          let () =
-            print_endline
-              ("Number of tries remaining: " ^ string_of_int !number_of_lives)
-          in
-          game num words_array guessed_words const hint_mode
-    else if !number_of_lives = 0 then
-      print_endline "Out of tries. Better luck next time!"
-    else
-      let () = decr number_of_lives in
-      let () = print_endline "Nope!" in
-      let () =
-        print_endline
-          ("Number of tries remaining: " ^ string_of_int !number_of_lives)
-      in
-      game num words_array guessed_words const hint_mode
-  else print_endline "Enter 4 numbers for 4 words."
+        game num words_array guessed_words const hint_mode
+    else print_endline "Enter 4 numbers for 4 words."
 
 let rec main_loop const words_array guessed_words hint mode =
   game (Array.length words_array) words_array guessed_words const hint;
@@ -168,14 +170,25 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
-        let new_words_array = Array.make (List.length (Game.const "yellow" num_list) * 4) (Word.make "" "") in
+        let new_words_array =
+          Array.make
+            (List.length (Game.const "yellow" num_list) * 4)
+            (Word.make "" "")
+        in
         (* Store all elements from all four categories into one array *)
         for i = 0 to List.length (Game.const "yellow" num_list) - 1 do
-          for j = 0 to Array.length (List.nth (Game.const "yellow" num_list) i).items - 1 do
-            new_words_array.((4 * i) + j) <- (List.nth (Game.const "yellow" num_list) i).items.(j)
+          for
+            j = 0
+            to Array.length (List.nth (Game.const "yellow" num_list) i).items
+               - 1
+          do
+            new_words_array.((4 * i) + j) <-
+              (List.nth (Game.const "yellow" num_list) i).items.(j)
           done
         done;
-        main_loop (Game.const "yellow" num_list) new_words_array guessed_words_init hint mode
+        main_loop
+          (Game.const "yellow" num_list)
+          new_words_array guessed_words_init hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -187,12 +200,16 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
-        let new_words_array = Array.make (List.length (Game.const "green" num_list) * 4) (Word.make "" "") in
+        let new_words_array =
+          Array.make
+            (List.length (Game.const "green" num_list) * 4)
+            (Word.make "" "")
+        in
         let new_const = Game.const "green" num_list in
         (* Store all elements from all four categories into one array *)
-        for i = 0 to List.length (new_const) - 1 do
-          for j = 0 to Array.length (List.nth (new_const) i).items - 1 do
-            new_words_array.((4 * i) + j) <- (List.nth (new_const) i).items.(j)
+        for i = 0 to List.length new_const - 1 do
+          for j = 0 to Array.length (List.nth new_const i).items - 1 do
+            new_words_array.((4 * i) + j) <- (List.nth new_const i).items.(j)
           done
         done;
         main_loop new_const new_words_array guessed_words_init hint mode
@@ -207,14 +224,24 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
-        let new_words_array = Array.make (List.length (Game.const "blue" num_list) * 4) (Word.make "" "") in
+        let new_words_array =
+          Array.make
+            (List.length (Game.const "blue" num_list) * 4)
+            (Word.make "" "")
+        in
         (* Store all elements from all four categories into one array *)
         for i = 0 to List.length (Game.const "blue" num_list) - 1 do
-          for j = 0 to Array.length (List.nth (Game.const "blue" num_list) i).items - 1 do
-            new_words_array.((4 * i) + j) <- (List.nth (Game.const "blue" num_list) i).items.(j)
+          for
+            j = 0
+            to Array.length (List.nth (Game.const "blue" num_list) i).items - 1
+          do
+            new_words_array.((4 * i) + j) <-
+              (List.nth (Game.const "blue" num_list) i).items.(j)
           done
         done;
-        main_loop (Game.const "blue" num_list) new_words_array guessed_words_init hint mode
+        main_loop
+          (Game.const "blue" num_list)
+          new_words_array guessed_words_init hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -226,14 +253,25 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
-        let new_words_array = Array.make (List.length (Game.const "purple" num_list) * 4) (Word.make "" "") in
+        let new_words_array =
+          Array.make
+            (List.length (Game.const "purple" num_list) * 4)
+            (Word.make "" "")
+        in
         (* Store all elements from all four categories into one array *)
         for i = 0 to List.length (Game.const "purple" num_list) - 1 do
-          for j = 0 to Array.length (List.nth (Game.const "purple" num_list) i).items - 1 do
-            new_words_array.((4 * i) + j) <- (List.nth (Game.const "purple" num_list) i).items.(j)
+          for
+            j = 0
+            to Array.length (List.nth (Game.const "purple" num_list) i).items
+               - 1
+          do
+            new_words_array.((4 * i) + j) <-
+              (List.nth (Game.const "purple" num_list) i).items.(j)
           done
         done;
-        main_loop (Game.const "purple" num_list) new_words_array guessed_words_init hint mode
+        main_loop
+          (Game.const "purple" num_list)
+          new_words_array guessed_words_init hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -245,14 +283,25 @@ let rec main_loop const words_array guessed_words hint mode =
         let num_list =
           [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
         in
-        let new_words_array = Array.make (List.length (Game.const "normal" num_list) * 4) (Word.make "" "") in
+        let new_words_array =
+          Array.make
+            (List.length (Game.const "normal" num_list) * 4)
+            (Word.make "" "")
+        in
         (* Store all elements from all four categories into one array *)
         for i = 0 to List.length (Game.const "normal" num_list) - 1 do
-          for j = 0 to Array.length (List.nth (Game.const "normal" num_list) i).items - 1 do
-            new_words_array.((4 * i) + j) <- (List.nth (Game.const "normal" num_list) i).items.(j)
+          for
+            j = 0
+            to Array.length (List.nth (Game.const "normal" num_list) i).items
+               - 1
+          do
+            new_words_array.((4 * i) + j) <-
+              (List.nth (Game.const "normal" num_list) i).items.(j)
           done
         done;
-        main_loop (Game.const "normal" num_list) new_words_array guessed_words_init hint mode
+        main_loop
+          (Game.const "normal" num_list)
+          new_words_array guessed_words_init hint mode
     | "no" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -264,7 +313,8 @@ let rec main_loop const words_array guessed_words hint mode =
         print_endline "Do you want to play the next day's game? (yes/no)"
       in
       match read_line () with
-      | "yes" -> main_loop const words_array guessed_words_init hint "Archive~01"
+      | "yes" ->
+          main_loop const words_array guessed_words_init hint "Archive~01"
       | "no" -> print_endline "Thanks for playing!"
       | _ ->
           print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -272,7 +322,8 @@ let rec main_loop const words_array guessed_words hint mode =
     else if day = 39 then (
       let () = print_endline "Do you want to play yesterday's game? (yes/no)" in
       match read_line () with
-      | "yes" -> main_loop const words_array guessed_words_init hint "Archive~38"
+      | "yes" ->
+          main_loop const words_array guessed_words_init hint "Archive~38"
       | "no" -> print_endline "Thanks for playing!"
       | _ ->
           print_endline "Invalid input. Please enter 'yes' or 'no'.";
@@ -283,9 +334,11 @@ let rec main_loop const words_array guessed_words hint mode =
          (y/t/n)";
     match read_line () with
     | "y" ->
-        main_loop const words_array guessed_words_init hint ("Archive~" ^ string_of_int (day - 1))
+        main_loop const words_array guessed_words_init hint
+          ("Archive~" ^ string_of_int (day - 1))
     | "t" ->
-        main_loop const words_array guessed_words_init  hint ("Archive~" ^ string_of_int (day + 1))
+        main_loop const words_array guessed_words_init hint
+          ("Archive~" ^ string_of_int (day + 1))
     | "n" -> print_endline "Thanks for playing!"
     | _ ->
         print_endline "Invalid input. Please enter 'yes' or 'no'.";

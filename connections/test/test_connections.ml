@@ -3,7 +3,7 @@ open Connections.Word
 open Connections.Category
 open Connections.Game
 
-(*return the [n]th elements of [lst]*)
+(*[test_helper n lst] returns the [n]th elements of [lst]*)
 let rec test_helper n lst =
   match lst with
   | [] -> failwith "empty list"
@@ -145,6 +145,16 @@ let init_lst =
     Connections.Word.make "empty" "empty";
   |]
 
+let holder =
+  [
+    List.hd expected_yellow;
+    List.hd expected_green;
+    List.hd expected_blue;
+    List.hd expected_purple;
+  ]
+
+(* [const_oab_test attempted] runs const with Archive~attempted and asserts that
+   it raises the OutsideArchiveBounds exception*)
 let const_oab_test attempted =
   let ints = Array.make 4 0 in
   assert_equal
@@ -231,6 +241,27 @@ let tests =
              are multiple items**)
            assert_equal (items test_category4)
              [| test_word; test_word2; test_word3 |] );
+         ( "OutsideArchiveBounds" >:: fun _ ->
+           (*exception is raised when input number is too high**)
+           const_oab_test 40 );
+         ( "category_find" >:: fun _ ->
+           (*correct category is found and returned **)
+           assert_equal (List.nth holder 2)
+             (category_find
+                (Connections.Word.make "Option" "Keyboard Keys")
+                holder);
+           (*default category is returned when element is not in any**)
+           assert_equal
+             (Connections.Category.make "none" "none"
+                (Array.make 4 (Connections.Word.make "none" "none"))
+                "none")
+             (category_find (Connections.Word.make "nothing" "nowhere") holder)
+         );
+         ( "color_match" >:: fun _ ->
+           (*color matching the string is correctly returned **)
+           assert_equal ANSITerminal.green (color_match "green");
+           (*color black is returned if string matches none **)
+           assert_equal ANSITerminal.black (color_match "hrxyba") );
        ]
 
 let () = run_test_tt_main tests

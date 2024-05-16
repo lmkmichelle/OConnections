@@ -37,11 +37,13 @@ val check_win : Word.t array -> bool
 val color_match : string -> ANSITerminal.style
 (** [color_match i] takes string [i], which represents the difficulty of a
     category and returns the corresponding ANSITerminal.style for it to be
-    printed in the right color *)
+    printed in the right color. Returns black if i does not fit any color *)
 
 val category_find : Word.t -> Category.t list -> Category.t
 (** [category_find e l] searches through a list [l] of categories to find which
-    one contains element [e] *)
+    one contains element [e]. Returns the category in which e was found if it is
+    present, returns a category with ["none"] as each of its values if no such
+    element is found in any category *)
 
 val contradiction_eliminator : Category.t list -> Category.t list
 (** [contradiction_eliminator l] searches through list [l], performing numerous
