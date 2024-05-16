@@ -203,7 +203,7 @@ let rec contradiction_eliminator (l : Category.t list) =
      done);
   !final_list
 
-exception OutsideArchiveBounds
+exception OutsideArchiveBounds of { attempted : int }
 
 let const custom random_num_list =
   if custom = "yellow" then
@@ -244,7 +244,8 @@ let const custom random_num_list =
       ]
   else if String.contains custom 'A' then
     let day = int_of_string (String.sub custom 8 2) in
-    if day < 00 || day > 39 then raise OutsideArchiveBounds
+    if day < 00 || day > 39 then
+      raise (OutsideArchiveBounds { attempted = day })
     else
       [
         List.nth yellow day;

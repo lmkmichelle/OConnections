@@ -2,6 +2,17 @@ open OUnit2
 open Connections.Word
 open Connections.Category
 
+let const_oab_test attempted =
+  let ints = Array.make 4 0 in
+  assert_equal
+    (Some (Connections.Game.OutsideArchiveBounds { attempted }))
+    (try
+       let c =
+         Connections.Game.const ("Archive~" ^ string_of_int attempted) ints
+       in
+       None
+     with e -> Some e)
+
 let tests =
   "tests"
   >::: [
@@ -77,7 +88,16 @@ let tests =
              are multiple items**)
            assert_equal (items test_category4)
              [| test_word; test_word2; test_word3 |] );
-          
+        ("exception OutsideArchiveBounds with const"  >:: fun _ ->
+          (**const run on archive with input > 39 raises OutsideArchiveBounds 
+              correctly*)
+          const_oab_test 40;
+          (**const run on archive with input not two digits long raises OutsideArchiveBounds correctly*)
+          const_oab_test 1;
+          (**const run on archive with negative input raises OutsideArchiveBounds correctly*)
+          const_oab_test ~-10;
+
+        )
        ]
 
 let () = run_test_tt_main tests
