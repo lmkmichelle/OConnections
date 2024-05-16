@@ -77,6 +77,7 @@ let tests =
              are multiple items**)
            assert_equal (items test_category4)
              [| test_word; test_word2; test_word3 |] );
+          
        ]
 
 let () = run_test_tt_main tests
