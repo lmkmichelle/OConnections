@@ -317,6 +317,51 @@ let tests =
            assert_equal ANSITerminal.green (color_match "green");
            (*color black is returned if string matches none **)
            assert_equal ANSITerminal.black (color_match "hrxyba") );
+          
+          ( "array_eliminate" >:: fun _ ->
+            let words_array = Array.make 4 (Connections.Word.make "hello" "hello") in
+            let test_array = Array.make 4 (Connections.Word.make "empty" "empty") in
+            (* Verify that two same arrays have no disjoint elements *)
+            assert_equal 
+            (array_eliminate words_array words_array)
+            [||];
+            assert_equal 
+            (array_eliminate words_array test_array)
+            words_array;
+            (* Verify that when l1 is a subset of l2 return empty array *)
+            let () = test_array.(1) <- Connections.Word.make "hello" "hello" in
+            assert_equal 
+            (array_eliminate words_array test_array)
+            [||];
+            (* Verify that when l2 is a subset of l1 the return is its not shared value(s)*)
+            let () = words_array.(1) <- Connections.Word.make "bye" "bye" in
+            assert_equal
+            (array_eliminate words_array test_array)
+            [|Connections.Word.make "bye" "bye"|]
+          );
+
+          ( "array_eliminate" >:: fun _ ->
+            let words_array = Array.make 4 (Connections.Word.make "hello" "hello") in
+            let test_array = Array.make 4 (Connections.Word.make "empty" "empty") in
+            (* Verify that two same arrays have no disjoint elements *)
+            assert_equal 
+            (array_eliminate words_array words_array)
+            [||];
+            assert_equal 
+            (array_eliminate words_array test_array)
+            words_array;
+            (* Verify that when l1 is a subset of l2 return empty array *)
+            let () = test_array.(1) <- Connections.Word.make "hello" "hello" in
+            assert_equal 
+            (array_eliminate words_array test_array)
+            [||];
+            (* Verify that when l2 is a subset of l1 the return is its not shared value(s)*)
+            let () = words_array.(1) <- Connections.Word.make "bye" "bye" in
+            assert_equal
+            (array_eliminate words_array test_array)
+            [|Connections.Word.make "bye" "bye"|]
+          )
+        
        ]
 
 let () = run_test_tt_main tests
