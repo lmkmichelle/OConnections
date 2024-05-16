@@ -46,3 +46,7 @@ val contradiction_eliminator : Category.t list -> Category.t list
 (** [contradiction_eliminator l] searches through list [l], performing numerous
    checks on the category names and items in it, changing them randomly until
    there is no repetition of labels. *)
+exception OutsideArchiveBounds 
+(**exception OutsideArchiveBounds is raised if a day is provided for the archive
+    that is not included in the current connections files. This includes negative 
+numbers or numbers greater than 39*)
