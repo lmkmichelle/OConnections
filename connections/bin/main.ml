@@ -142,24 +142,113 @@ let rec game num words_array (guessed_words : Word.t array) const hint_mode =
       game num words_array guessed_words const hint_mode
   else print_endline "Enter 4 numbers for 4 words."
 
-let rec main_loop const words_array hint =
+let rec main_loop const words_array hint mode =
   game (Array.length words_array) words_array guessed_words const hint;
-  print_endline "Do you want to play again? (yes/no)";
-  match read_line () with
-  | "yes" -> main_loop const words_array hint
-  | "no" -> print_endline "Thanks for playing!"
-  | _ ->
-      print_endline "Invalid input. Please enter 'yes' or 'no'.";
-      main_loop const words_array hint
+
+  if mode = "yellow" then (
+    let () = print_endline "Do you want to play again? (yes/no)" in
+    match read_line () with
+    | "yes" ->
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        main_loop (Game.const "yellow" num_list) words_array hint mode
+    | "no" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array hint mode)
+  else if mode = "green" then (
+    let () = print_endline "Do you want to play again? (yes/no)" in
+    match read_line () with
+    | "yes" ->
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        main_loop (Game.const "green" num_list) words_array hint mode
+    | "no" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array hint mode)
+  else if mode = "blue" then (
+    let () = print_endline "Do you want to play again? (yes/no)" in
+    match read_line () with
+    | "yes" ->
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        main_loop (Game.const "blue" num_list) words_array hint mode
+    | "no" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array hint mode)
+  else if mode = "purple" then (
+    let () = print_endline "Do you want to play again? (yes/no)" in
+    match read_line () with
+    | "yes" ->
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        main_loop (Game.const "purple" num_list) words_array hint mode
+    | "no" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array hint mode)
+  else if mode = "normal" then (
+    let () = print_endline "Do you want to play again? (yes/no)" in
+    match read_line () with
+    | "yes" ->
+        let num_list =
+          [| Random.int 40; Random.int 40; Random.int 40; Random.int 40 |]
+        in
+        main_loop (Game.const "normal" num_list) words_array hint mode
+    | "no" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array hint mode)
+  else
+    let day = int_of_string (String.sub mode 8 2) in
+    if day = 00 then (
+      let () =
+        print_endline "Do you want to play the next day's game? (yes/no)"
+      in
+      match read_line () with
+      | "yes" -> main_loop const words_array hint "Archive~01"
+      | "no" -> print_endline "Thanks for playing!"
+      | _ ->
+          print_endline "Invalid input. Please enter 'yes' or 'no'.";
+          main_loop const words_array hint mode)
+    else if day = 39 then (
+      let () = print_endline "Do you want to play yesterday's game? (yes/no)" in
+      match read_line () with
+      | "yes" -> main_loop const words_array hint "Archive~38"
+      | "no" -> print_endline "Thanks for playing!"
+      | _ ->
+          print_endline "Invalid input. Please enter 'yes' or 'no'.";
+          main_loop const words_array hint mode)
+    else
+      print_endline
+        "Do you want to play yesterday's game, tomorrow's game, or neither? \
+         (y/t/n)";
+    match read_line () with
+    | "y" ->
+        main_loop const words_array hint ("Archive~" ^ string_of_int (day - 1))
+    | "t" ->
+        main_loop const words_array hint ("Archive~" ^ string_of_int (day + 1))
+    | "n" -> print_endline "Thanks for playing!"
+    | _ ->
+        print_endline "Invalid input. Please enter 'yes' or 'no'.";
+        main_loop const words_array hint mode
 
 let _ =
   (* dune exec bin/main.exe <hint_mode> <custom_difficulty> *)
   if Array.length Sys.argv <> 3 then
     print_endline
       "Format: dune exec bin/main.exe <hint_mode> <custom_difficulty>\n\
-      \    <hint_mode> should be 'yes' or 'no', depending on if you want hints.\n\
+      \    <mode> should be 'hint' or 'none', depending on if you want hints \
+       or not.\n\
       \    <custom_difficulty> should be the color difficulty you want (green, \
-       yellow, blue, purple), \n\
+       yellow, blue, purple), 'Archive~##' where ## is the number of the game \
+       you want (00 - 39) or 'none', to play archive mode, \n\
       \    or 'normal' for standard Connections."
   else
     let const = const Sys.argv.(2) random_num_list in
@@ -171,4 +260,4 @@ let _ =
       done
     done;
     let () = shuffle words_array in
-    main_loop const words_array Sys.argv.(1)
+    main_loop const words_array Sys.argv.(1) Sys.argv.(2)
