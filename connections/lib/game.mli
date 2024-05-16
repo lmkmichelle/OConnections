@@ -12,7 +12,8 @@ val const : string -> int array -> Category.t list
     or one from each from a random game if custom is ["random"] or game number
     ## if custom is ["Archive~##"] or just all four from a random game if custom
     is anything else. [random_num_list] is the value [random_num_list] from
-    game.mli *)
+    game.mli. Raises [OutsideArchiveBounds] if the archive number is greater
+    than 39*)
 
 val shuffle : 'a array -> unit
 (** [shuffle a] shuffles array [a]'s ordering such that the elements are put
@@ -52,6 +53,5 @@ val contradiction_eliminator : Category.t list -> Category.t list
 
 exception OutsideArchiveBounds of { attempted : int }
 (**exception OutsideArchiveBounds is raised if a day is provided for the archive
-   that is not included in the current connections files. This includes negative
-   numbers or numbers greater than 39. Value attempted is equal to the attempted
-   day that was used*)
+   that is not included in the current connections files. This includes numbers
+   greater than 39. Value attempted is equal to the attempted day that was used*)
