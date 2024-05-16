@@ -34,15 +34,15 @@ val check_win : Word.t array -> bool
     guessed), and false otherwise. *)
 
 val color_match : string -> ANSITerminal.style
-(**[color_match i] takes string [i], which represents the difficulty of a
+(** [color_match i] takes string [i], which represents the difficulty of a
    category and returns the corresponding ANSITerminal.style for it to be
-   printed in the right color*)
+   printed in the right color *)
 
 val category_find : Word.t -> Category.t list -> Category.t
-(**[category_find e l] searches through a list [l] of categories to find which
+(** [category_find e l] searches through a list [l] of categories to find which
    one contains element [e] *)
 
 val contradiction_eliminator : Category.t list -> Category.t list
-(**[contradiction_eliminator l] searches through list [l], performing numerous
+(** [contradiction_eliminator l] searches through list [l], performing numerous
    checks on the category names and items in it, changing them randomly until
    there is no repetition of labels. *)
